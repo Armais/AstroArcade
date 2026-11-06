@@ -1,0 +1,778 @@
+/* Astro Arcade. Los colores salen del rotulo de neon del estudio
+   (OrbitRivals/tools/estudio/astro_arcade_logo.py): cada pieza tiene su tubo y su resplandor. */
+
+@font-face {
+  font-family: "Exo 2";
+  src: url("../fonts/exo2.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --noche: #121626;          /* el fondo de la pantalla de arranque */
+  --noche-alta: #1a2036;
+  --linea: #2b3354;
+  --texto: #e7e9f6;
+  --texto-suave: #a7adcc;
+
+  --coral: #ff9e8c;          /* A de la izquierda */
+  --coral-brillo: #ff463e;
+  --turquesa: #8cffee;       /* A de la derecha */
+  --turquesa-brillo: #00e2cc;
+  --orbita: #dee2ff;         /* el anillo */
+  --orbita-brillo: #7880ff;
+  --oro: #ffe282;            /* el planeta */
+  --oro-brillo: #ffb800;
+
+  --ancho: 68rem;
+  --medida: 38rem;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* La barra fija tapa lo de arriba: los saltos a una seccion dejan su hueco */
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  background: var(--noche);
+  color: var(--texto);
+  font-family: "Exo 2", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--oro); text-underline-offset: 0.2em; }
+a:hover { color: #fff; }
+
+:focus-visible {
+  outline: 3px solid var(--turquesa-brillo);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.solo-lector {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Barra fija. En la portada sale cuando los botones del rotulo se van de la pantalla
+   (js/sitio.js le pone .visible); en las demas paginas lleva .barra-siempre y esta desde el principio */
+.barra {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 1.25rem;
+  background: rgb(18 22 38 / 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--linea);
+  transform: translateY(-110%);
+  visibility: hidden;
+  transition: transform 0.25s ease-out, visibility 0s linear 0.25s;
+}
+.barra.visible,
+.barra-siempre {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.25s ease-out;
+}
+.barra-siempre { position: sticky; }
+
+.barra-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--texto);
+  font-weight: 800;
+  font-style: italic;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.barra-marca img { width: 2rem; height: 2rem; border-radius: 0.45rem; }
+.barra-marca:hover { color: #fff; }
+
+.barra-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.barra-menu a { color: var(--texto-suave); text-decoration: none; white-space: nowrap; }
+.barra-menu a:hover,
+.barra-menu a[aria-current="page"] { color: var(--texto); }
+.barra .boton,
+.barra .boton:hover { margin: 0; padding: 0.45rem 1.1rem; color: var(--noche); font-size: 0.95rem; }
+
+/* ---- Portada: el rotulo encendiendose */
+.portada {
+  min-height: 80svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1.25rem 2.5rem;
+  position: relative;
+  text-align: center;
+}
+
+.menu {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.75rem;
+  padding: 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.menu a { color: var(--texto-suave); text-decoration: none; }
+.menu a:hover { color: var(--texto); }
+
+.rotulo { margin: 0; line-height: 0; }
+
+.rotulo-boton {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+/* Un poco mas bajo que la pantalla para que asome el principio de los juegos */
+#rotulo {
+  display: block;
+  width: min(88vw, 42rem, calc(46svh * 886 / 619));
+  aspect-ratio: 886 / 619;
+  height: auto;
+}
+
+/* El lema del estudio, en el neon del anillo: la orbita que comparten las dos A */
+.divisa {
+  margin: 0.25rem 0 0;
+  color: var(--orbita);
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 6px var(--orbita-brillo), 0 0 24px rgb(120 128 255 / 0.6);
+  text-wrap: balance;
+}
+
+.lema {
+  margin: 0.75rem 0 0;
+  color: var(--texto-suave);
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.portada-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  margin-top: 1.75rem;
+}
+.portada-botones .boton { margin-top: 0; }
+
+/* Con JavaScript, el lema espera a que se encienda ARCADE (js/rotulo.js pone .encendida). Los botones
+   no esperan: se ven desde el principio para que nadie tenga que adivinar que hacer. */
+.rotulo-js .portada .divisa,
+.rotulo-js .portada .lema { opacity: 0; }
+
+.rotulo-js .portada.encendida .divisa { animation: enciende 0.8s ease-out both; }
+.rotulo-js .portada.encendida .lema {
+  opacity: 1;
+  transition: opacity 0.6s ease-out 0.4s;
+}
+
+@keyframes enciende {
+  from { opacity: 0; text-shadow: none; }
+  40% { opacity: 0.6; text-shadow: none; }
+  to { opacity: 1; }
+}
+
+/* ---- Secciones */
+.seccion {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 5rem 1.25rem;
+}
+.seccion-pegada { padding-top: 2.5rem; }
+
+/* Titulares como el ASTRO ARCADE del logo: cursiva gruesa, de oro a coral, con franjas abajo */
+.titular {
+  margin: 0 0 2.5rem;
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+.titular span {
+  background:
+    linear-gradient(to bottom,
+      transparent 0 56%, var(--noche) 56% 60%,
+      transparent 60% 68%, var(--noche) 68% 71%,
+      transparent 71% 79%, var(--noche) 79% 81%,
+      transparent 81%),
+    linear-gradient(to bottom, #fff3c4 0%, var(--oro) 22%, var(--oro-brillo) 48%, #ff7a3c 72%, var(--coral-brillo) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  filter: drop-shadow(0 0 14px rgb(255 110 60 / 0.35));
+  padding-right: 0.15em; /* que la cursiva no se corte */
+}
+
+.entradilla {
+  max-width: var(--medida);
+  margin: 0 0 2.5rem;
+  font-size: 1.2rem;
+  color: var(--texto);
+}
+
+h3 { font-weight: 700; }
+
+/* ---- Juegos: una fila por juego, el trailer alterna de lado */
+.juego {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 4.5rem;
+}
+.juego:last-child { margin-bottom: 0; }
+.juego:nth-of-type(even) .video { order: 2; }
+
+.juego h3 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.juego h3 a { color: inherit; text-decoration: none; }
+.juego h3 a:hover { color: #fff; }
+
+.juego-genero {
+  margin: 0.35rem 0 1rem;
+  color: var(--orbita);
+  font-weight: 600;
+}
+
+.juego-texto p { max-width: var(--medida); }
+
+/* ---- Trailer: la portada del juego hace de boton y el video de YouTube solo se carga al pulsar */
+.video {
+  position: relative;
+  aspect-ratio: 1024 / 500;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 1px var(--linea);
+}
+.video-16-9 { aspect-ratio: 16 / 9; }
+.video img,
+.video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+.video-portada { display: block; height: 100%; color: var(--texto); }
+/* El play va en la esquina, con su etiqueta, para no tapar el logo de la portada del juego */
+.video-play {
+  position: absolute;
+  left: 0.75rem; bottom: 0.75rem;
+  width: 2.75rem; height: 2.75rem;
+  border-radius: 50%;
+  background: rgb(18 22 38 / 0.85);
+  box-shadow: inset 0 0 0 2px var(--oro), 0 0 18px rgb(255 184 0 / 0.5);
+  transition: transform 0.15s ease-out;
+}
+.video-play::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 0.32rem);
+  top: calc(50% - 0.55rem);
+  border-style: solid;
+  border-width: 0.55rem 0 0.55rem 0.9rem;
+  border-color: transparent transparent transparent var(--oro);
+}
+.video-portada:hover .video-play { transform: scale(1.1); }
+.video-etiqueta {
+  position: absolute;
+  left: 4rem; bottom: 1.25rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  background: rgb(18 22 38 / 0.85);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---- Ficha de cada juego: los mismos datos en todos, en una tabla corta */
+.ficha {
+  max-width: var(--medida);
+  margin: 1.25rem 0 0.5rem;
+  padding: 0.25rem 1.1rem;
+  border-radius: 0.9rem;
+  background: var(--noche-alta);
+  box-shadow: inset 0 0 0 1px var(--linea);
+}
+.ficha div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+}
+.ficha div + div { border-top: 1px solid var(--linea); }
+.ficha dt {
+  color: var(--texto-suave);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ficha dd {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.botones .boton { margin-top: 0; }
+
+.boton {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: var(--oro-brillo);
+  color: var(--noche);
+  font-weight: 700;
+  text-decoration: none;
+}
+.boton:hover {
+  color: var(--noche);
+  background: var(--oro);
+  box-shadow: 0 0 18px rgb(255 184 0 / 0.55);
+}
+
+.boton-secundario {
+  background: transparent;
+  color: var(--orbita);
+  box-shadow: inset 0 0 0 1.5px var(--orbita-brillo);
+}
+.boton-secundario:hover {
+  background: var(--noche-alta);
+  color: #fff;
+  box-shadow: inset 0 0 0 1.5px var(--orbita-brillo), 0 0 18px rgb(120 128 255 / 0.45);
+}
+
+/* ---- Los tonos del rotulo: cada pieza da su tubo, su resplandor y un tinte para el fondo */
+.tono-coral { --tubo: var(--coral); --brillo: var(--coral-brillo); --halo: rgb(255 70 62 / 0.6); --tinte: rgb(255 70 62 / 0.14); }
+.tono-turquesa { --tubo: var(--turquesa); --brillo: var(--turquesa-brillo); --halo: rgb(0 226 204 / 0.55); --tinte: rgb(0 226 204 / 0.12); }
+.tono-orbita { --tubo: var(--orbita); --brillo: var(--orbita-brillo); --halo: rgb(120 128 255 / 0.6); --tinte: rgb(120 128 255 / 0.16); }
+.tono-oro { --tubo: var(--oro); --brillo: var(--oro-brillo); --halo: rgb(255 184 0 / 0.55); --tinte: rgb(255 184 0 / 0.12); }
+
+/* ---- Lo que nos mueve: la mision en una frase y los cuatro valores en fila */
+.valores {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.valor {
+  padding: 1.75rem 1.5rem 1.5rem;
+  border-radius: 1.25rem;
+  background: radial-gradient(120% 70% at 50% 0%, var(--tinte), transparent 70%), var(--noche-alta);
+}
+.valor h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.valor p {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.98rem;
+}
+
+/* El icono como un tubo del rotulo: color, nucleo casi blanco y resplandor */
+.neon {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  overflow: visible;
+  fill: none;
+  stroke: var(--tubo);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px var(--brillo)) drop-shadow(0 0 10px var(--brillo));
+}
+.neon .nucleo {
+  stroke: #fff;
+  stroke-width: 1.4;
+  opacity: 0.85;
+}
+
+/* ---- Quienes somos: cada fundador es una A del logo, con su neon */
+.fundadores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.fundador {
+  padding: 2rem 2rem 2.25rem;
+  border-radius: 1.25rem;
+  background: radial-gradient(110% 60% at 0% 0%, var(--tinte), transparent 70%), var(--noche-alta);
+}
+.fundador > p {
+  margin: 1.5rem 0 0;
+  color: var(--texto);
+  max-width: var(--medida);
+}
+
+.fundador-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.fundador-cabecera .neon { width: 4.5rem; height: 4.5rem; flex: none; }
+
+.fundador h3 {
+  margin: 0;
+  color: var(--tubo);
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 6px var(--brillo), 0 0 22px var(--halo);
+}
+.fundador-papel {
+  margin: 0.2rem 0 0;
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+
+/* ---- Siguenos: una tarjeta por canal, que se enciende al pasar por encima */
+.redes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.25rem;
+}
+.red a {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background: radial-gradient(110% 90% at 0% 0%, var(--tinte), transparent 70%), var(--noche-alta);
+  color: var(--texto);
+  text-decoration: none;
+  transition: box-shadow 0.15s ease-out;
+}
+.red a:hover {
+  color: var(--texto);
+  box-shadow: inset 0 0 0 1.5px var(--brillo), 0 0 22px var(--halo);
+}
+.red .neon { width: 3rem; height: 3rem; flex: none; }
+.red strong { display: block; font-size: 1.2rem; line-height: 1.3; }
+.red span { color: var(--texto-suave); font-size: 0.95rem; }
+
+/* ---- Contacto y pie */
+.correo { font-weight: 700; }
+
+.pie {
+  padding: 2.5rem 1.25rem 3rem;
+  border-top: 1px solid var(--linea);
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+.pie-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  font-weight: 600;
+}
+.pie-menu a { color: var(--texto-suave); text-decoration: none; }
+.pie-menu a:hover { color: var(--texto); }
+.pie p { margin: 0; }
+
+/* ---- Pagina de un juego: cabecera con trailer y ficha, capturas y lo que trae */
+.cabecera-juego {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 1rem;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.cabecera-juego .titular { margin: 0; }
+.cabecera-juego .juego-genero { margin-bottom: 0.75rem; }
+.resumen { margin: 0; max-width: var(--medida); font-size: 1.15rem; }
+
+.galeria {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.galeria a {
+  display: block;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--linea);
+}
+.galeria img { width: 100%; aspect-ratio: 16 / 9; transition: transform 0.2s ease-out; }
+.galeria a:hover img { transform: scale(1.03); }
+
+/* Visor de capturas (js/sitio.js): la imagen grande sobre la pagina oscurecida */
+.visor {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: 96vw;
+  max-height: 92vh;
+  overflow: visible;
+}
+.visor::backdrop { background: rgb(8 10 20 / 0.9); }
+.visor img { max-width: 96vw; max-height: 88vh; border-radius: 0.6rem; }
+.visor-cerrar {
+  position: absolute;
+  top: -0.75rem; right: -0.75rem;
+  width: 2.5rem; height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--oro-brillo);
+  color: var(--noche);
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.historia p { max-width: var(--medida); }
+.historia p:first-child { margin-top: 0; font-size: 1.2rem; }
+
+.detalles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.detalle {
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background: radial-gradient(110% 70% at 0% 0%, var(--tinte), transparent 70%), var(--noche-alta);
+}
+.detalle h3 {
+  margin: 0 0 0.75rem;
+  color: var(--tubo);
+  font-size: 1.2rem;
+  font-style: italic;
+  text-shadow: 0 0 6px var(--brillo), 0 0 18px var(--halo);
+}
+.detalle ul { margin: 0; padding-left: 1.1rem; color: var(--texto-suave); }
+.detalle li + li { margin-top: 0.4rem; }
+
+.aviso {
+  max-width: var(--medida);
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.9rem;
+  background: var(--noche-alta);
+  box-shadow: inset 3px 0 0 var(--oro-brillo);
+}
+.aviso + .aviso { margin-top: 1rem; }
+
+/* ---- Prensa y textos legales */
+.descargas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+.descargas a {
+  display: block;
+  height: 100%;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background: var(--noche-alta);
+  box-shadow: inset 0 0 0 1px var(--linea);
+  color: var(--texto);
+  text-decoration: none;
+}
+.descargas a:hover { box-shadow: inset 0 0 0 1.5px var(--oro-brillo), 0 0 18px rgb(255 184 0 / 0.35); }
+.descargas strong { display: block; color: var(--oro); font-size: 1.1rem; }
+.descargas span { color: var(--texto-suave); font-size: 0.95rem; }
+
+.prensa-juego + .prensa-juego { margin-top: 3.5rem; }
+.prensa-juego h3 { margin: 0; font-size: 1.8rem; font-weight: 800; }
+
+.texto-legal { max-width: var(--medida); }
+.texto-legal h2 { margin: 2.5rem 0 0.5rem; font-size: 1.35rem; }
+.texto-legal .fecha { color: var(--texto-suave); }
+
+/* ---- Pagina para jugar: barra arriba y el juego en todo lo demas */
+.sala {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sala-barra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--linea);
+}
+.sala-barra h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.sala-volver {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--texto-suave);
+  font-weight: 600;
+  text-decoration: none;
+}
+.sala-volver img { width: 2rem; height: 2rem; border-radius: 0.4rem; }
+.sala-acciones {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+.sala-acciones a { color: var(--texto-suave); font-weight: 600; text-decoration: none; }
+.sala-acciones a:hover { color: var(--texto); }
+.sala-acciones button,
+.sala-aviso button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--orbita-brillo);
+  border-radius: 999px;
+  background: none;
+  color: var(--orbita);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sala-acciones button:hover,
+.sala-aviso button:hover { background: var(--noche-alta); color: #fff; }
+
+/* El aviso de la descarga: se cierra con Entendido. No se guarda nada en el navegador, asi que
+   vuelve a salir en la siguiente visita */
+.sala-aviso {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background: var(--noche-alta);
+  border-bottom: 1px solid var(--linea);
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+.sala-aviso[hidden] { display: none; }
+.sala-aviso button { margin-left: auto; padding: 0.25rem 0.8rem; font-size: 0.85rem; }
+
+.sala-juego {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #000;
+}
+
+/* ---- Movil */
+@media (max-width: 900px) {
+  .valores,
+  .detalles { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .juego,
+  .fundadores,
+  .cabecera-juego { grid-template-columns: 1fr; }
+  .juego { gap: 1.25rem; }
+  .cabecera-juego { gap: 1.5rem; padding-top: 1.75rem; }
+  .fundador { padding: 1.5rem 1.5rem 1.75rem; }
+  .juego:nth-of-type(even) .video { order: 0; }
+  .seccion { padding: 3.5rem 1.25rem; }
+  .seccion-pegada { padding-top: 2rem; }
+  .menu { gap: 0.25rem 1.1rem; font-size: 0.9rem; }
+  .galeria { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .barra { gap: 1rem; padding: 0.5rem 1rem; }
+  .barra-menu { gap: 1rem; }
+  .barra-menu .opcional { display: none; }
+}
+
+@media (max-width: 560px) {
+  .valores,
+  .detalles { grid-template-columns: 1fr; }
+  .ficha div { grid-template-columns: 6.5rem 1fr; gap: 0.75rem; }
+  .barra-marca span { display: none; }
+  .sala-volver span { display: none; }
+  .sala-acciones .opcional { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .barra,
+  .barra.visible { transition: none; }
+}

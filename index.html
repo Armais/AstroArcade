@@ -3,9 +3,283 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AstroArcade</title>
+  <title>Astro Arcade | De jugadores, para jugadores</title>
+  <meta name="description" content="Astro Arcade es el estudio indie de videojuegos de Alfonso y Armais. Juega gratis en el navegador a Orbit Rivals y Cotton vs Ants.">
+  <link rel="canonical" href="https://astroarcade.es/">
+  <link rel="alternate" hreflang="es" href="https://astroarcade.es/">
+  <link rel="alternate" hreflang="en" href="https://astroarcade.es/en/">
+  <link rel="alternate" hreflang="x-default" href="https://astroarcade.es/">
+  <meta name="theme-color" content="#121626">
+
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://astroarcade.es/">
+  <meta property="og:title" content="Astro Arcade">
+  <meta property="og:description" content="De jugadores, para jugadores. El estudio indie de videojuegos de Alfonso y Armais.">
+  <meta property="og:image" content="https://astroarcade.es/img/compartir.jpg">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Astro Arcade",
+    "url": "https://astroarcade.es/",
+    "logo": "https://astroarcade.es/apple-touch-icon.png",
+    "email": "championastroarcade@gmail.com",
+    "founder": [{ "@type": "Person", "name": "Alfonso" }, { "@type": "Person", "name": "Armais" }]
+  }
+  </script>
+
+  <link rel="preload" href="fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="img/rotulo.webp" as="image">
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add("rotulo-js");</script>
+  <script src="js/rotulo.js" defer></script>
+  <script src="js/sitio.js" defer></script>
 </head>
 <body>
-  <h1>Hola mundo</h1>
+  <!-- La barra fija sale cuando los botones de la portada se van por arriba (js/sitio.js) -->
+  <nav class="barra" data-tras-portada aria-label="Menú">
+    <a class="barra-marca" href="#"><img src="apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
+    <div class="barra-menu">
+      <a href="#juegos">Juegos</a>
+      <a class="opcional" href="#nosotros">Nosotros</a>
+      <a class="opcional" href="prensa/">Prensa</a>
+      <a class="opcional" href="#contacto">Contacto</a>
+      <a href="en/" hreflang="en" lang="en" aria-label="English">EN</a>
+      <a class="boton" href="orbit-rivals/jugar/">Jugar</a>
+    </div>
+  </nav>
+
+  <header class="portada">
+    <nav class="menu" aria-label="Secciones">
+      <a href="#juegos">Juegos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="prensa/">Prensa</a>
+      <a href="#contacto">Contacto</a>
+      <a href="en/" hreflang="en" lang="en" aria-label="English">EN</a>
+    </nav>
+
+    <h1 class="rotulo">
+      <button class="rotulo-boton" type="button" aria-label="Astro Arcade. Pulsa para volver a encender el rótulo">
+        <canvas id="rotulo" width="886" height="619" aria-hidden="true"></canvas>
+        <noscript><img src="img/logo.webp" alt="" width="1000" height="692"></noscript>
+      </button>
+      <span class="solo-lector">Astro Arcade</span>
+    </h1>
+
+    <p class="divisa">De jugadores, para jugadores.</p>
+    <p class="lema">Estudio indie de videojuegos de Alfonso y Armais.</p>
+    <div class="portada-botones">
+      <a class="boton" href="orbit-rivals/jugar/">Jugar gratis a Orbit Rivals</a>
+      <a class="boton boton-secundario" href="#juegos">Ver nuestros juegos</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="juegos" class="seccion seccion-pegada" aria-labelledby="titulo-juegos">
+      <h2 id="titulo-juegos" class="titular"><span>Nuestros juegos</span></h2>
+
+      <!-- Cada juego: su tráiler (YouTube solo se carga al pulsar), la misma ficha de datos y dos
+           botones, jugar ya o ver su página con capturas y detalles -->
+      <article class="juego">
+        <div class="video" data-youtube="qSgkBIshVUg">
+          <a class="video-portada" href="https://www.youtube.com/watch?v=qSgkBIshVUg" aria-label="Ver el tráiler de Orbit Rivals">
+            <img src="img/juegos/orbit-rivals.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="video-play" aria-hidden="true"></span>
+            <span class="video-etiqueta" aria-hidden="true">Ver tráiler</span>
+          </a>
+        </div>
+        <div class="juego-texto">
+          <h3><a href="orbit-rivals/">Orbit Rivals</a></h3>
+          <p class="juego-genero">Party game de tablero en 3D</p>
+          <p>Año 2742: cuatro rivales compiten por los Núcleos estelares. Tiras los dados, recorres el tablero y te juegas las chispas en 100 minijuegos, en línea con tus amigos o en el mismo dispositivo contra bots.</p>
+          <dl class="ficha">
+            <div><dt>Jugadores</dt><dd>1 a 4, en línea o en local</dd></div>
+            <div><dt>Plataformas</dt><dd>Navegador y Android</dd></div>
+            <div><dt>Controles</dt><dd>Táctil, teclado y ratón o mando</dd></div>
+            <div><dt>Idiomas</dt><dd>Español, inglés y 6 más</dd></div>
+            <div><dt>Precio</dt><dd>Gratis, sin cajas de botín</dd></div>
+          </dl>
+          <div class="botones">
+            <a class="boton" href="orbit-rivals/jugar/">Jugar gratis</a>
+            <a class="boton boton-secundario" href="orbit-rivals/">Capturas y detalles</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="juego">
+        <div class="video" data-youtube="7OUu3AlEBwQ">
+          <a class="video-portada" href="https://www.youtube.com/watch?v=7OUu3AlEBwQ" aria-label="Ver el tráiler de Cotton vs Ants">
+            <img src="img/juegos/cotton-vs-ants.webp" alt="" width="1024" height="500" loading="lazy">
+            <span class="video-play" aria-hidden="true"></span>
+            <span class="video-etiqueta" aria-hidden="true">Ver tráiler</span>
+          </a>
+        </div>
+        <div class="juego-texto">
+          <h3><a href="cotton-vs-ants/">Cotton vs Ants</a></h3>
+          <p class="juego-genero">Plataformas en 2D</p>
+          <p>Guía a Polusan, un algodón valiente, por siete mundos. Aplasta hormigas con su supergravedad y vence a tres jefes para rescatar a sus amigos.</p>
+          <dl class="ficha">
+            <div><dt>Jugadores</dt><dd>1</dd></div>
+            <div><dt>Plataformas</dt><dd>Navegador y Windows</dd></div>
+            <div><dt>Controles</dt><dd>Táctil, teclado o mando</dd></div>
+            <div><dt>Idiomas</dt><dd>Español, inglés y 6 más</dd></div>
+            <div><dt>Precio</dt><dd>Gratis y sin anuncios</dd></div>
+          </dl>
+          <div class="botones">
+            <a class="boton" href="cotton-vs-ants/jugar/">Jugar gratis</a>
+            <a class="boton boton-secundario" href="cotton-vs-ants/">Capturas y detalles</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="valores" class="seccion" aria-labelledby="titulo-valores">
+      <h2 id="titulo-valores" class="titular"><span>Lo que nos mueve</span></h2>
+      <p class="entradilla">Queremos hacer juegos que enganchen por lo divertidos que son y que, de paso, entrenen cosas que sirven fuera de la pantalla: la memoria, los reflejos o pensar una estrategia.</p>
+
+      <!-- Cada icono es un tubo de neón como los del logo: el trazo de color y, encima, su núcleo
+           casi blanco (el <use>). Cada valor lleva el color de una pieza del rótulo. -->
+      <ul class="valores">
+        <li class="valor tono-coral">
+          <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+            <g id="neon-caja">
+              <path d="M12 20h40v8H12zM15 28h34v24H15zM32 20v32"/>
+              <path d="M8 58L56 8"/>
+            </g>
+            <use href="#neon-caja" class="nucleo"/>
+          </svg>
+          <h3>Sin cajas de botín</h3>
+          <p>Nada de pagar por una sorpresa. Si algo cuesta dinero, sabes exactamente qué te llevas.</p>
+        </li>
+        <li class="valor tono-turquesa">
+          <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+            <g id="neon-balanza">
+              <path d="M32 14v38M22 52h20M12 20h40"/>
+              <path d="M12 20L6 34M12 20l6 14M5 34q7 8 14 0zM52 20l-6 14M52 20l6 14M45 34q7 8 14 0z"/>
+              <circle cx="32" cy="11" r="3"/>
+            </g>
+            <use href="#neon-balanza" class="nucleo"/>
+          </svg>
+          <h3>Anuncios y pagos con medida</h3>
+          <p>No llenamos el juego de anuncios ni de micropagos. Tiene que merecer la pena por sí mismo.</p>
+        </li>
+        <li class="valor tono-orbita">
+          <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+            <g id="neon-bombilla">
+              <path d="M25 44v-5c-6-3.5-10-9-10-15.5a17 17 0 0 1 34 0c0 6.5-4 12-10 15.5v5z"/>
+              <path d="M27 50h10M29 56h6M27 26l5 5 5-5M32 31v8"/>
+            </g>
+            <use href="#neon-bombilla" class="nucleo"/>
+          </svg>
+          <h3>Jugar también enseña</h3>
+          <p>Un buen juego entrena la memoria, la atención y la toma de decisiones. Diseñamos pensando en eso.</p>
+        </li>
+        <li class="valor tono-oro">
+          <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+            <g id="neon-mando">
+              <path d="M21 22h22c8 0 12 8 14 18 1.5 8-4 11-8 7l-6-6H21l-6 6c-4 4-9.5 1-8-7 2-10 6-18 14-18z"/>
+              <path d="M19 28v9M14.5 32.5h9"/>
+              <circle cx="43" cy="29" r="2"/>
+              <circle cx="48" cy="34" r="2"/>
+            </g>
+            <use href="#neon-mando" class="nucleo"/>
+          </svg>
+          <h3>Calidad antes que prisa</h3>
+          <p>Cada idea se prueba jugando antes de darla por buena. Si no divierte, no entra.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="nosotros" class="seccion" aria-labelledby="titulo-nosotros">
+      <h2 id="titulo-nosotros" class="titular"><span>Quiénes somos</span></h2>
+      <p class="entradilla">Astro Arcade somos dos entusiastas de los videojuegos. Hacemos los juegos que nos gustaría encontrarnos como jugadores, para compartir esa pasión con la comunidad y con jugadores de todo el mundo.</p>
+
+      <!-- Cada fundador es una de las A del logo: Alfonso la coral, Armais la turquesa -->
+      <div class="fundadores">
+        <article class="fundador tono-coral">
+          <div class="fundador-cabecera">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <g id="neon-a"><path d="M14 56L32 8l18 48M20.5 39h23"/></g>
+              <use href="#neon-a" class="nucleo"/>
+            </svg>
+            <div>
+              <h3>Alfonso</h3>
+              <p class="fundador-papel">Cofundador</p>
+            </div>
+          </div>
+          <p>Soy desarrollador de software y, sobre todo, una persona curiosa, siempre buscando algo nuevo que aprender. Los videojuegos me apasionan desde pequeño y ahora me hace ilusión estar al otro lado, convirtiendo ideas en mundos que otros disfruten. Crear juegos es mi forma de seguir explorando.</p>
+        </article>
+        <article class="fundador tono-turquesa">
+          <div class="fundador-cabecera">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <use href="#neon-a"/>
+              <use href="#neon-a" class="nucleo"/>
+            </svg>
+            <div>
+              <h3>Armais</h3>
+              <p class="fundador-papel">Cofundador</p>
+            </div>
+          </div>
+          <p>Soy ingeniero aeroespacial de formación, llevo ocho años programando y, antes que nada, soy jugador. Me gusta crear los juegos que a mí me gustaría encontrarme: de esos que te hacen desconectar del mundo y siempre te piden una partida más.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="comunidad" class="seccion" aria-labelledby="titulo-comunidad">
+      <h2 id="titulo-comunidad" class="titular"><span>Síguenos</span></h2>
+      <p class="entradilla">Tráileres, novedades y las versiones nuevas de nuestros juegos.</p>
+      <ul class="redes">
+        <li class="red tono-coral">
+          <a href="https://www.youtube.com/@OrbitRivalsGame">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <g id="neon-video">
+                <path d="M11 14h42a7 7 0 0 1 7 7v22a7 7 0 0 1-7 7H11a7 7 0 0 1-7-7V21a7 7 0 0 1 7-7z"/>
+                <path d="M27 24v16l13-8z"/>
+              </g>
+              <use href="#neon-video" class="nucleo"/>
+            </svg>
+            <div><strong>YouTube</strong><span>El canal de Orbit Rivals, con sus tráileres</span></div>
+          </a>
+        </li>
+        <li class="red tono-turquesa">
+          <a href="https://armaisdiaz.itch.io/">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <g id="neon-descarga">
+                <path d="M32 8v30M20 26l12 12 12-12"/>
+                <path d="M10 44v10h44V44"/>
+              </g>
+              <use href="#neon-descarga" class="nucleo"/>
+            </svg>
+            <div><strong>itch.io</strong><span>Nuestros juegos, también para descargar</span></div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contacto" class="seccion" aria-labelledby="titulo-contacto">
+      <h2 id="titulo-contacto" class="titular"><span>Contacto</span></h2>
+      <p class="entradilla">Para prensa, colaboraciones o para contarnos qué te ha parecido un juego, escríbenos a <a class="correo" href="mailto:championastroarcade@gmail.com">championastroarcade@gmail.com</a>.</p>
+      <p class="entradilla">Si vas a escribir sobre nosotros, en el <a href="prensa/">kit de prensa</a> tienes logos, capturas y la ficha de cada juego.</p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <ul class="pie-menu">
+      <li><a href="#juegos">Juegos</a></li>
+      <li><a href="prensa/">Prensa</a></li>
+      <li><a href="privacidad/">Privacidad</a></li>
+      <li><a href="https://www.youtube.com/@OrbitRivalsGame">YouTube</a></li>
+      <li><a href="https://armaisdiaz.itch.io/">itch.io</a></li>
+      <li><a href="en/" hreflang="en" lang="en">English</a></li>
+    </ul>
+    <p>© 2026 Astro Arcade</p>
+  </footer>
 </body>
 </html>

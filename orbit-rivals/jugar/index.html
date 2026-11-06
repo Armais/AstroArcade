@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juega a Orbit Rivals en el navegador | Astro Arcade</title>
+  <meta name="description" content="Juega gratis a Orbit Rivals, el party game de tablero en 3D de Astro Arcade, directamente en el navegador.">
+  <link rel="canonical" href="https://astroarcade.es/orbit-rivals/jugar/">
+  <link rel="alternate" hreflang="es" href="https://astroarcade.es/orbit-rivals/jugar/">
+  <link rel="alternate" hreflang="en" href="https://astroarcade.es/en/orbit-rivals/play/">
+  <link rel="alternate" hreflang="x-default" href="https://astroarcade.es/orbit-rivals/jugar/">
+  <meta name="theme-color" content="#121626">
+
+  <link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://astroarcade.es/orbit-rivals/jugar/">
+  <meta property="og:title" content="Juega a Orbit Rivals en el navegador">
+  <meta property="og:description" content="Party game de tablero en 3D con 100 minijuegos. Gratis, en línea con amigos o contra bots.">
+  <meta property="og:image" content="https://astroarcade.es/img/juegos/orbit-rivals.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="../../fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body class="sala">
+  <header class="sala-barra">
+    <a class="sala-volver" href="../../">
+      <img src="../../apple-touch-icon.png" alt="" width="180" height="180">
+      <span>Astro Arcade</span>
+    </a>
+    <h1>Orbit Rivals</h1>
+    <div class="sala-acciones">
+      <a class="opcional" href="../">Detalles del juego</a>
+      <button type="button" id="completa">Pantalla completa</button>
+    </div>
+  </header>
+
+  <p class="sala-aviso" id="aviso" hidden>La primera vez se descargan unos 185 MB: mejor con wifi. En el móvil, gíralo en horizontal. <button type="button">Entendido</button></p>
+
+  <!-- El juego lo sirve itch.io: la build web pesa unos 185 MB y GitHub no admite ficheros de más
+       de 100 MB. Este número es el del fichero HTML5 subido allí: cada versión nueva que suba el
+       workflow Publicar (butler, canal html5) sale aquí sola, sin tocar esta página. -->
+  <iframe class="sala-juego" id="juego"
+          src="https://itch.io/embed-upload/19897464?color=121626"
+          title="Orbit Rivals"
+          allow="autoplay; fullscreen *; gamepad; gyroscope; accelerometer; cross-origin-isolated; web-share; clipboard-write"></iframe>
+
+  <script>
+    // El iPhone no deja poner un iframe a pantalla completa: ahí el botón no sale
+    var juego = document.getElementById("juego");
+    var boton = document.getElementById("completa");
+    var pedir = juego.requestFullscreen || juego.webkitRequestFullscreen;
+    if (pedir) boton.addEventListener("click", function () { pedir.call(juego); });
+    else boton.hidden = true;
+
+    // El aviso de la descarga solo sale con JavaScript, que es lo que hace falta para cerrarlo
+    var aviso = document.getElementById("aviso");
+    aviso.hidden = false;
+    aviso.querySelector("button").addEventListener("click", function () { aviso.hidden = true; });
+  </script>
+</body>
+</html>
