@@ -664,6 +664,13 @@ h3 { font-weight: 700; }
 .texto-legal { max-width: var(--medida); }
 .texto-legal h2 { margin: 2.5rem 0 0.5rem; font-size: 1.35rem; }
 .texto-legal .fecha { color: var(--texto-suave); }
+.texto-legal .aviso { margin: 1.5rem 0; }
+[dir="rtl"] .aviso { box-shadow: inset -3px 0 0 var(--oro-brillo); }
+/* Los textos de Orbit Rivals van en sus ocho idiomas en una sola pagina: esta es la lista para elegir */
+.idiomas-legal { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin: 0 0 2rem; }
+.idiomas-legal a { color: var(--texto-suave); }
+.idiomas-legal a[aria-current] { color: var(--oro); font-weight: 700; text-decoration: none; }
+.paginas-legal { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 3rem; }
 
 /* ---- Pagina para jugar: barra arriba y el juego en todo lo demas */
 .sala {

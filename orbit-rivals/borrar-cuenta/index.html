@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borrar tu cuenta de Orbit Rivals · Orbit Rivals | Astro Arcade</title>
+  <meta name="description" content="Cómo borrar tu cuenta de Orbit Rivals, desde el juego o sin él.">
+  <link rel="canonical" href="https://astroarcade.es/orbit-rivals/borrar-cuenta/">
+  <meta name="theme-color" content="#121626">
+
+  <link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+
+  <link rel="preload" href="../../fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+  <nav class="barra barra-siempre" aria-label="Menú">
+    <a class="barra-marca" href="../../"><img src="../../apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
+    <div class="barra-menu">
+      <a href="../../#juegos">Juegos</a>
+      <a class="opcional" href="../../#nosotros">Nosotros</a>
+      <a class="opcional" href="../../prensa/">Prensa</a>
+      <a class="opcional" href="../../#contacto">Contacto</a>
+      <a class="boton" href="../jugar/">Jugar</a>
+    </div>
+  </nav>
+
+  <!-- Copia de https://alfonso652.github.io/orbitrivals-legal/borrar-cuenta.html (la que enlaza Google Play),
+       version sin numero propio. Los textos salen de OrbitRivals/tools/legal/web.py, que los saca de los del juego
+       (src/ui/legal.cpp y sus traducciones): no se editan aqui. Si cambian, se vuelve a generar, se suben
+       a GitHub Pages y se copian aqui los <section lang> (enlaces "x.html" -> "../x/", h1 con su span,
+       .meta -> .fecha, .resumen -> .aviso). Una sola pagina con todos los idiomas: el script elige el
+       del navegador o el de ?lang=xx, como en GitHub Pages. -->
+  <main class="seccion seccion-pegada">
+    <nav class="idiomas-legal" aria-label="Idioma"><a href="?lang=es" lang="es">Español</a><a href="?lang=en" lang="en">English</a></nav>
+    <section lang="es">
+      <h1 class="titular"><span>Borrar tu cuenta de Orbit Rivals</span></h1>
+      <div class="texto-legal"><h2>Desde el juego</h2><p>Perfil → Cuenta → «Borrar cuenta», con dos confirmaciones. Se borra al momento en tu dispositivo y también en nuestro servidor (si no tienes conexión, en cuanto la haya).</p><h2>Sin el juego</h2><p>Escríbenos a <a href="mailto:championastroarcade@gmail.com">championastroarcade@gmail.com</a> desde el correo con el que iniciaste sesión (el tuyo o el de tu cuenta de Google) y pide que borremos tu cuenta. Si no iniciaste sesión, dinos el identificador que sale en Perfil → Cuenta (por ejemplo «ID 42AC-9B30»). Lo hacemos en un mes como mucho y te avisamos.</p><h2>Qué se borra</h2><p>Tu usuario en el servidor, tu correo (si iniciaste sesión), tus trofeos y la copia de tu cuenta: progreso, monedas, personaje, amigos y compras.</p><h2>Qué se guarda</h2><p>Los recibos de las compras con dinero real, sin tu cuenta, el tiempo que obliga la ley (impuestos, entre 4 y 6 años), y las denuncias en las que sales, hasta 12 meses (o más en un caso grave que pueda pedir una autoridad). Nada más.</p><nav class="paginas-legal"><a href="../terminos/">Términos de uso</a><a href="../privacidad/">Política de privacidad</a></nav></div>
+    </section>
+    <section lang="en">
+      <h1 class="titular"><span>Delete your Orbit Rivals account</span></h1>
+      <div class="texto-legal"><h2>From the game</h2><p>Profile → Account → «Delete account», with two confirmations. It is deleted at once on your device and also on our server (if you are offline, as soon as you are back online).</p><h2>Without the game</h2><p>Write to us at <a href="mailto:championastroarcade@gmail.com">championastroarcade@gmail.com</a> from the email you signed in with (yours or your Google account&#x27;s) and ask us to delete your account. If you never signed in, tell us the ID shown in Profile → Account (for example «ID 42AC-9B30»). We do it within one month at most and let you know.</p><h2>What is deleted</h2><p>Your user on the server, your email (if you signed in), your trophies and the copy of your account: progress, coins, character, friends and purchases.</p><h2>What is kept</h2><p>Receipts of real-money purchases, without your account, for as long as the law requires (taxes, 4 to 6 years), and reports you appear in, for up to 12 months (or longer in a serious case an authority may ask for). Nothing else.</p><nav class="paginas-legal"><a href="../terminos/">Terms of use</a><a href="../privacidad/">Privacy policy</a></nav></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <ul class="pie-menu">
+      <li><a href="../../#juegos">Juegos</a></li>
+      <li><a href="../../prensa/">Prensa</a></li>
+      <li><a href="../../privacidad/">Privacidad</a></li>
+      <li><a href="https://discord.gg/WTKSdF9XSx">Discord</a></li>
+      <li><a href="https://www.tiktok.com/@astro_arcade_games">TikTok</a></li>
+      <li><a href="https://www.youtube.com/@OrbitRivalsGame">YouTube</a></li>
+      <li><a href="https://armaisdiaz.itch.io/">itch.io</a></li>
+    </ul>
+    <p>© 2026 Astro Arcade</p>
+  </footer>
+
+  <script>
+    (function () {
+      var ls = ['es', 'en'], q = new URLSearchParams(location.search).get('lang');
+      var n = (navigator.languages || [navigator.language || 'en']).map(function (x) { return x.slice(0, 2).toLowerCase(); });
+      var l = (q && ls.indexOf(q) >= 0) ? q : (n.filter(function (x) { return ls.indexOf(x) >= 0; })[0] || 'en');
+      document.querySelectorAll('section[lang]').forEach(function (s) { s.hidden = s.lang !== l; });
+      document.querySelectorAll('.idiomas-legal a').forEach(function (a) {
+        if (a.lang === l) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+      document.documentElement.lang = l;
+      var t = document.querySelector('section[lang="' + l + '"] h1');
+      if (t) document.title = t.textContent + ' · Orbit Rivals | Astro Arcade';
+    })();
+  </script>
+</body>
+</html>
