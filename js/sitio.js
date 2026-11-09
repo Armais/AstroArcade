@@ -4,6 +4,9 @@
   "use strict";
   var ingles = document.documentElement.lang === "en";
 
+  // En Android, lo primero es instalarlo desde Google Play; en iPhone y en el PC, jugar en el navegador
+  if (/Android/i.test(navigator.userAgent)) document.documentElement.classList.add("android");
+
   // La barra de la portada sale cuando sus botones se van por arriba: el Jugar de la barra los releva
   var barra = document.querySelector(".barra[data-tras-portada]");
   var botones = document.querySelector(".portada-botones");

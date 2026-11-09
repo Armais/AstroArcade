@@ -370,6 +370,13 @@ h3 { font-weight: 700; }
 }
 .botones .boton { margin-top: 0; }
 
+/* La insignia oficial de Google Play, sin retocar: la inglesa trae margen transparente dentro del
+   PNG y la española no, por eso cada una lleva su tamano. En Android va la primera (js/sitio.js) */
+.insignia-play { display: inline-flex; align-items: center; }
+.insignia-play img { display: block; width: auto; height: 2.9rem; }
+html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
+.android .botones .insignia-play { order: -1; }
+
 .boton {
   display: inline-block;
   margin-top: 0.75rem;
