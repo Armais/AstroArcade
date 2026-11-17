@@ -1,0 +1,5 @@
+# www.astroarcade.es -> astroarcade.es (301), para que Google vea una sola version de cada pagina.
+# Solo vale mientras la web este en Hostinger (LiteSpeed). En Cloudflare Pages hace falta una regla de redireccion alli.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.astroarcade\.es$ [NC]
+RewriteRule ^(.*)$ https://astroarcade.es/$1 [R=301,L]
