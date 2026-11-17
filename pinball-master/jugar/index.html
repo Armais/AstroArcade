@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juega a Pinball Master en el navegador | Astro Arcade</title>
+  <meta name="description" content="Juega gratis a Pinball Master, pinball en 3D, de Astro Arcade, directamente en el navegador.">
+  <link rel="canonical" href="https://astroarcade.es/pinball-master/jugar/">
+  <link rel="alternate" hreflang="es" href="https://astroarcade.es/pinball-master/jugar/">
+  <link rel="alternate" hreflang="en" href="https://astroarcade.es/en/pinball-master/play/">
+  <link rel="alternate" hreflang="x-default" href="https://astroarcade.es/pinball-master/jugar/">
+  <meta name="theme-color" content="#121626">
+
+  <link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://astroarcade.es/pinball-master/jugar/">
+  <meta property="og:title" content="Juega a Pinball Master en el navegador">
+  <meta property="og:description" content="Pinball en 3D: 90 mesas en diez mundos, cada una con su reto. Gratis, con récords en línea.">
+  <meta property="og:image" content="https://astroarcade.es/img/juegos/pinball-master.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="../../fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body class="sala">
+  <header class="sala-barra">
+    <a class="sala-volver" href="../../">
+      <img src="../../apple-touch-icon.png" alt="" width="180" height="180">
+      <span>Astro Arcade</span>
+    </a>
+    <h1>Pinball Master</h1>
+    <div class="sala-acciones">
+      <a class="opcional" href="../">Detalles del juego</a>
+      <button type="button" id="completa">Pantalla completa</button>
+    </div>
+  </header>
+
+  <p class="sala-aviso" id="aviso" hidden>Se descargan unos 23 MB. Se juega en vertical: en el móvil, sujétalo derecho. <button type="button">Entendido</button></p>
+
+  <!-- El juego lo sirve itch.io (https://alfonso652.itch.io/pinball-master). Este número es el del fichero HTML5 subido allí
+       (canal html5 de butler): cada versión nueva que se suba a ese canal sale aquí sola. Si se sube
+       un fichero nuevo y se borra el viejo, hay que poner aquí el número nuevo (y en /en/pinball-master/play/).
+       Es un juego en vertical: .sala-juego-vertical lo deja en proporción de móvil en el ordenador. -->
+  <iframe class="sala-juego sala-juego-vertical" id="juego"
+          src="https://itch.io/embed-upload/20148784?color=121626"
+          title="Pinball Master"
+          allow="autoplay; fullscreen *; gamepad; gyroscope; accelerometer; cross-origin-isolated; web-share; clipboard-write"></iframe>
+
+  <script>
+    // El iPhone no deja poner un iframe a pantalla completa: ahí el botón no sale
+    var juego = document.getElementById("juego");
+    var boton = document.getElementById("completa");
+    var pedir = juego.requestFullscreen || juego.webkitRequestFullscreen;
+    if (pedir) boton.addEventListener("click", function () { pedir.call(juego); });
+    else boton.hidden = true;
+
+    // El aviso de la descarga solo sale con JavaScript, que es lo que hace falta para cerrarlo
+    var aviso = document.getElementById("aviso");
+    aviso.hidden = false;
+    aviso.querySelector("button").addEventListener("click", function () { aviso.hidden = true; });
+  </script>
+</body>
+</html>

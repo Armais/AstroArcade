@@ -581,6 +581,9 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 }
 .galeria img { width: 100%; aspect-ratio: 16 / 9; transition: transform 0.2s ease-out; }
 .galeria a:hover img { transform: scale(1.03); }
+/* Juegos en vertical (Spin Brawl, Pinball Master): capturas de movil, seis en fila */
+.galeria-vertical { grid-template-columns: repeat(6, 1fr); }
+.galeria-vertical img { aspect-ratio: 9 / 16; }
 
 /* Visor de capturas (js/sitio.js): la imagen grande sobre la pagina oscurecida */
 .visor {
@@ -753,6 +756,14 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
   border: 0;
   background: #000;
 }
+/* Juego en vertical: en el ordenador, en proporcion de movil y centrado; en el movil, todo el ancho */
+.sala-juego-vertical {
+  width: auto;
+  max-width: 100%;
+  min-height: 0;
+  aspect-ratio: 9 / 16;
+  align-self: center;
+}
 
 /* ---- Movil */
 @media (max-width: 900px) {
@@ -773,6 +784,7 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
   .seccion-pegada { padding-top: 2rem; }
   .menu { gap: 0.25rem 1.1rem; font-size: 0.9rem; }
   .galeria { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .galeria-vertical { grid-template-columns: repeat(3, 1fr); }
   .barra { gap: 1rem; padding: 0.5rem 1rem; }
   .barra-menu { gap: 1rem; }
   .barra-menu .opcional { display: none; }
@@ -786,6 +798,7 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
   .barra-marca span { display: none; }
   .sala-volver span { display: none; }
   .sala-acciones .opcional { display: none; }
+  .sala-juego-vertical { width: 100%; aspect-ratio: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
