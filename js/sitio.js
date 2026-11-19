@@ -1,5 +1,5 @@
-// Astro Arcade: la barra fija de la portada, los trailers y el visor de capturas. Sin dependencias:
-// sin JavaScript la portada tiene su menu, los trailers abren YouTube y las capturas se abren solas.
+// Astro Arcade: el video de la portada, los trailers y el visor de capturas. Sin dependencias:
+// sin JavaScript la portada se queda con la imagen fija, los trailers abren YouTube y las capturas se abren solas.
 (function () {
   "use strict";
   var ingles = document.documentElement.lang === "en";
@@ -7,19 +7,9 @@
   // En Android, lo primero es instalarlo desde Google Play; en iPhone y en el PC, jugar en el navegador
   if (/Android/i.test(navigator.userAgent)) document.documentElement.classList.add("android");
 
-  // La barra de la portada sale cuando sus botones se van por arriba: el Jugar de la barra los releva
-  var barra = document.querySelector(".barra[data-tras-portada]");
-  var botones = document.querySelector(".portada-botones");
-  if (barra && botones && "IntersectionObserver" in window) {
-    new IntersectionObserver(function (cambios) {
-      var c = cambios[0];
-      barra.classList.toggle("visible", !c.isIntersecting && c.boundingClientRect.top < 0);
-    }).observe(botones);
-  }
-
-  // Video de fondo de la portada: no arranca si se han pedido menos animaciones o ahorro de datos
+  // Video de la portada: no arranca si se han pedido menos animaciones o ahorro de datos
   // (se queda la imagen fija) y se para mientras no se ve
-  var fondo = document.querySelector(".portada-fondo");
+  var fondo = document.querySelector(".portada-video video");
   var quieto = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var ahorro = navigator.connection && navigator.connection.saveData;
   if (fondo && !quieto && !ahorro) {

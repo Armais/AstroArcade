@@ -66,8 +66,7 @@ a:hover { color: #fff; }
   white-space: nowrap;
 }
 
-/* ---- Barra fija. En la portada sale cuando los botones del rotulo se van de la pantalla
-   (js/sitio.js le pone .visible); en las demas paginas lleva .barra-siempre y esta desde el principio */
+/* ---- Barra fija. Todas las paginas, portada incluida, llevan .barra-siempre y esta desde el principio */
 .barra {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -84,7 +83,6 @@ a:hover { color: #fff; }
   visibility: hidden;
   transition: transform 0.25s ease-out, visibility 0s linear 0.25s;
 }
-.barra.visible,
 .barra-siempre {
   transform: none;
   visibility: visible;
@@ -119,53 +117,65 @@ a:hover { color: #fff; }
 .barra .boton,
 .barra .boton:hover { margin: 0; padding: 0.45rem 1.1rem; color: var(--noche); font-size: 0.95rem; }
 
-/* ---- Portada: el rotulo encendiendose */
+/* ---- Portada, como las de los motores de juegos: el rotulo encendiendose, el lema y los botones y,
+   al lado (debajo en el movil), una pantalla grande con partidas de Orbit Rivals */
 .portada {
-  min-height: 80svh;
+  display: grid;
+  gap: 2.25rem;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 2.5rem;
+  text-align: center;
+}
+.portada-texto {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 4.5rem 1.25rem 2.5rem;
-  position: relative;
-  isolation: isolate;
-  text-align: center;
 }
 
-/* De fondo, partidas de Orbit Rivals en bucle. Va oscurecido para que el rotulo siga mandando
-   y por abajo se funde con la noche de la pagina */
-.portada-fondo {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+/* La pantalla, con un halo del neon del anillo. Se oscurece por abajo para que se lea el pie
+   y, en pantalla ancha, por la izquierda, donde se le monta el texto */
+.portada-video {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--noche-alta);
+  box-shadow: 0 0 0 1px rgb(222 226 255 / 0.08), 0 24px 70px -24px rgb(120 128 255 / 0.55);
+}
+.portada-video video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none;
 }
-.portada::before {
+.portada-video::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(to bottom, rgb(18 22 38 / 0.6), transparent 18%, transparent 60%, var(--noche)),
-    radial-gradient(ellipse at 50% 45%, rgb(18 22 38 / 0.62), rgb(18 22 38 / 0.85) 75%);
+  background: linear-gradient(to top, rgb(18 22 38 / 0.75), transparent 35%);
+  pointer-events: none;
 }
-
-.menu {
+.portada-video figcaption {
   position: absolute;
-  top: 0; left: 0; right: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem 1.75rem;
-  padding: 1.25rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+  right: 1.25rem;
+  bottom: 1rem;
+  z-index: 1;
+  text-align: right;
+  line-height: 1.25;
 }
-.menu a { color: var(--texto-suave); text-decoration: none; }
-.menu a:hover { color: var(--texto); }
+.portada-video figcaption a { display: block; color: var(--texto); text-decoration: none; }
+.portada-video figcaption strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.portada-video figcaption span { color: var(--texto-suave); font-size: 0.9rem; }
+.portada-video figcaption a:hover strong { color: #fff; text-shadow: 0 0 12px var(--orbita-brillo); }
 
 .rotulo { margin: 0; line-height: 0; }
 
@@ -215,6 +225,37 @@ a:hover { color: #fff; }
   margin-top: 1.75rem;
 }
 .portada-botones .boton { margin-top: 0; }
+
+/* En pantalla ancha, el texto a la izquierda montado sobre el borde oscurecido de la pantalla */
+@media (min-width: 961px) {
+  .portada {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+    gap: 0;
+    padding: 2.5rem 2.5rem 1rem;
+    text-align: left;
+  }
+  .portada-texto {
+    grid-column: 1 / 7;
+    grid-row: 1;
+    z-index: 1;
+    align-items: flex-start;
+  }
+  .portada-video {
+    grid-column: 4 / 13;
+    grid-row: 1;
+  }
+  .portada-video::after {
+    background:
+      linear-gradient(to right, rgb(18 22 38 / 0.92), rgb(18 22 38 / 0.6) 14rem, transparent 28rem),
+      linear-gradient(to top, rgb(18 22 38 / 0.7), transparent 30%);
+  }
+  .portada-video figcaption { right: 1.75rem; bottom: 1.5rem; }
+  .portada-video figcaption strong { font-size: 1.5rem; }
+  .portada #rotulo { width: min(100%, 30rem, 33vw, calc(42svh * 886 / 619)); }
+  .portada .divisa { font-size: clamp(2.4rem, 3.4vw, 3.5rem); line-height: 1.08; }
+  .portada-botones { justify-content: flex-start; }
+}
 
 /* Con JavaScript, el lema espera a que se encienda ARCADE (js/rotulo.js pone .encendida). Los botones
    no esperan: se ven desde el principio para que nadie tenga que adivinar que hacer. */
@@ -804,7 +845,6 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
   .juego:nth-of-type(even) .video { order: 0; }
   .seccion { padding: 3.5rem 1.25rem; }
   .seccion-pegada { padding-top: 2rem; }
-  .menu { gap: 0.25rem 1.1rem; font-size: 0.9rem; }
   .galeria { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
   .galeria-vertical { grid-template-columns: repeat(3, 1fr); }
   .barra { gap: 1rem; padding: 0.5rem 1rem; }
@@ -825,6 +865,5 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .barra,
-  .barra.visible { transition: none; }
+  .barra { transition: none; }
 }

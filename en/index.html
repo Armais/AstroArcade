@@ -38,13 +38,13 @@
 
   <link rel="preload" href="../fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../img/rotulo.webp" as="image">
-  <link rel="stylesheet" href="../css/site.css?v=20261119">
+  <link rel="stylesheet" href="../css/site.css?v=20261119b">
   <script>document.documentElement.classList.add("rotulo-js");</script>
   <script src="../js/rotulo.js" defer></script>
-  <script src="../js/sitio.js?v=20261119" defer></script>
+  <script src="../js/sitio.js?v=20261119b" defer></script>
 </head>
 <body>
-  <nav class="barra" data-tras-portada aria-label="Menu">
+  <nav class="barra barra-siempre" aria-label="Menu">
     <a class="barra-marca" href="#"><img src="../apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
     <div class="barra-menu">
       <a href="#games">Games</a>
@@ -56,33 +56,32 @@
     </div>
   </nav>
 
+  <!-- Portada: el rotulo, el lema y los botones; al lado, 12 s de partidas de Orbit Rivals en bucle
+       y sin sonido (js/sitio.js lo arranca) en una pantalla grande que se funde con el texto -->
   <header class="portada">
-    <!-- De fondo, 12 s de partidas de Orbit Rivals en bucle y sin sonido (js/sitio.js lo arranca) -->
-    <video class="portada-fondo" muted loop playsinline preload="none" poster="../img/portada-orbit-rivals.webp" aria-hidden="true" tabindex="-1">
-      <source src="../video/portada-orbit-rivals.mp4" type="video/mp4">
-    </video>
-    <nav class="menu" aria-label="Sections">
-      <a href="#games">Games</a>
-      <a href="#about">About</a>
-      <a href="press/">Press</a>
-      <a href="#contact">Contact</a>
-      <a href="../" hreflang="es" lang="es" aria-label="Español">ES</a>
-    </nav>
+    <div class="portada-texto">
+      <h1 class="rotulo">
+        <button class="rotulo-boton" type="button" aria-label="Astro Arcade. Press to light the sign again">
+          <canvas id="rotulo" width="886" height="619" aria-hidden="true"></canvas>
+          <noscript><img src="../img/logo.webp" alt="" width="1000" height="692"></noscript>
+        </button>
+        <span class="solo-lector">Astro Arcade</span>
+      </h1>
 
-    <h1 class="rotulo">
-      <button class="rotulo-boton" type="button" aria-label="Astro Arcade. Press to light the sign again">
-        <canvas id="rotulo" width="886" height="619" aria-hidden="true"></canvas>
-        <noscript><img src="../img/logo.webp" alt="" width="1000" height="692"></noscript>
-      </button>
-      <span class="solo-lector">Astro Arcade</span>
-    </h1>
-
-    <p class="divisa">By gamers, for gamers.</p>
-    <p class="lema">Indie video game studio by Alfonso and Armais.</p>
-    <div class="portada-botones">
-      <a class="boton" href="orbit-rivals/play/">Play Orbit Rivals free</a>
-      <a class="boton boton-secundario" href="#games">See our games</a>
+      <p class="divisa">By gamers, for gamers.</p>
+      <p class="lema">Indie video game studio by Alfonso and Armais.</p>
+      <div class="portada-botones">
+        <a class="boton" href="orbit-rivals/play/">Play Orbit Rivals free</a>
+        <a class="boton boton-secundario" href="#games">See our games</a>
+      </div>
     </div>
+
+    <figure class="portada-video">
+      <video muted loop playsinline preload="none" poster="../img/portada-orbit-rivals.webp?v=20261119b" aria-hidden="true" tabindex="-1">
+        <source src="../video/portada-orbit-rivals.mp4?v=20261119b" type="video/mp4">
+      </video>
+      <figcaption><a href="orbit-rivals/"><strong>Orbit Rivals</strong><span>Astro Arcade</span></a></figcaption>
+    </figure>
   </header>
 
   <main>
