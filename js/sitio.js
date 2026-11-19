@@ -17,6 +17,25 @@
     }).observe(botones);
   }
 
+  // Video de fondo de la portada: no arranca si se han pedido menos animaciones o ahorro de datos
+  // (se queda la imagen fija) y se para mientras no se ve
+  var fondo = document.querySelector(".portada-fondo");
+  var quieto = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ahorro = navigator.connection && navigator.connection.saveData;
+  if (fondo && !quieto && !ahorro) {
+    var reproducir = function () {
+      var p = fondo.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (cambios) {
+        if (cambios[0].isIntersecting) reproducir(); else fondo.pause();
+      }).observe(fondo);
+    } else {
+      reproducir();
+    }
+  }
+
   // Trailers: hasta que se pulsa no se pide nada a YouTube (ni su reproductor ni sus cookies)
   document.querySelectorAll("[data-youtube]").forEach(function (caja) {
     var enlace = caja.querySelector("a");

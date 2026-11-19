@@ -38,10 +38,10 @@
 
   <link rel="preload" href="fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/rotulo.webp" as="image">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/site.css?v=20261119">
   <script>document.documentElement.classList.add("rotulo-js");</script>
   <script src="js/rotulo.js" defer></script>
-  <script src="js/sitio.js" defer></script>
+  <script src="js/sitio.js?v=20261119" defer></script>
 </head>
 <body>
   <!-- La barra fija sale cuando los botones de la portada se van por arriba (js/sitio.js) -->
@@ -58,6 +58,10 @@
   </nav>
 
   <header class="portada">
+    <!-- De fondo, 12 s de partidas de Orbit Rivals en bucle y sin sonido (js/sitio.js lo arranca) -->
+    <video class="portada-fondo" muted loop playsinline preload="none" poster="img/portada-orbit-rivals.webp" aria-hidden="true" tabindex="-1">
+      <source src="video/portada-orbit-rivals.mp4" type="video/mp4">
+    </video>
     <nav class="menu" aria-label="Secciones">
       <a href="#juegos">Juegos</a>
       <a href="#nosotros">Nosotros</a>
