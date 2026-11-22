@@ -56,6 +56,16 @@
     var aviso = document.getElementById("aviso");
     aviso.hidden = false;
     aviso.querySelector("button").addEventListener("click", function () { aviso.hidden = true; });
+
+    // El codigo de una sala del enlace de «Invitar» (/orbit-rivals/sala/): al juego, en la direccion
+    // de su iframe, de donde lo lee (Orbit Rivals, src/platform/invitacion.h). Y a la vista, por si
+    // el navegador no se lo deja leer (Safari): se escribe en «Unirse a sala»
+    var q = new URLSearchParams(location.search);
+    var sala = (q.get("sala") || "").replace(/\D/g, "");
+    if (sala.length === 6) {
+      juego.src += "&sala=" + sala + (q.get("comp") === "1" ? "&comp=1" : "");
+      aviso.insertAdjacentText("afterbegin", "Room code: " + sala + ". ");
+    }
   </script>
 </body>
 </html>

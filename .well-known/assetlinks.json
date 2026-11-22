@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.astroarcade.orbitrivals",
+      "sha256_cert_fingerprints":
+        ["63:D3:17:AC:93:D9:B6:46:9B:DF:1D:3E:63:12:CD:FA:ED:FA:E8:84:05:F4:BE:CF:26:C5:7C:74:F3:0D:48:F8"]
+    }
+  }
+]

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Orbit Rivals | Astro Arcade</title>
+  <meta name="theme-color" content="#121626">
+  <link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="stylesheet" href="../../css/site.css">
+  <!-- El enlace de «Invitar» del juego (Orbit Rivals, src/platform/invitacion.h):
+       /orbit-rivals/sala/?sala=CODIGO (y &comp=1 si la sala es competitiva). Con el juego
+       instalado en Android, el enlace abre el juego sin pasar por aqui (App Link verificado con
+       /.well-known/assetlinks.json). Si llega aqui: en Android, a Google Play con el codigo en el
+       referrer (el juego lo lee al abrirse por primera vez); en el resto, a jugar en el navegador
+       con ?sala=, que se lo pasa al juego. Sin JavaScript, los dos enlaces de abajo. -->
+</head>
+<body>
+  <main style="max-width: 32rem; margin: 18vh auto 0; padding: 0 16px; text-align: center">
+    <h1>Orbit Rivals</h1>
+    <p id="texto">Te han invitado a una sala.</p>
+    <p id="codigo" style="font-size: 2rem; letter-spacing: .12em" hidden></p>
+    <p>
+      <a id="web" href="../jugar/">Jugar en el navegador</a> ·
+      <a id="play" href="https://play.google.com/store/apps/details?id=com.astroarcade.orbitrivals&amp;utm_source=juego&amp;utm_medium=invitar&amp;utm_campaign=sala">Google Play</a>
+    </p>
+  </main>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var sala = (q.get("sala") || "").replace(/\D/g, "");
+      if (sala.length !== 6) sala = "";
+      var extra = sala ? "sala=" + sala + (q.get("comp") === "1" ? "&comp=1" : "") : "";
+      var utm = "utm_source=juego&utm_medium=invitar&utm_campaign=sala";
+      var play = "https://play.google.com/store/apps/details?id=com.astroarcade.orbitrivals&" + utm +
+                 "&referrer=" + encodeURIComponent(utm + (extra ? "&" + extra : ""));
+      var en = !/^es/i.test(navigator.language || "");
+      var web = (en ? "../../en/orbit-rivals/play/" : "../jugar/") + (extra ? "?" + extra : "");
+      if (en) {
+        document.documentElement.lang = "en";
+        document.getElementById("texto").textContent = "You've been invited to a room.";
+        document.getElementById("web").textContent = "Play in your browser";
+      }
+      if (sala) {
+        var c = document.getElementById("codigo");
+        c.textContent = sala;
+        c.hidden = false;
+      }
+      document.getElementById("web").href = web;
+      document.getElementById("play").href = play;
+      location.replace(/Android/i.test(navigator.userAgent) ? play : web);
+    })();
+  </script>
+</body>
+</html>
