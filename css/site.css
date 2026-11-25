@@ -27,6 +27,8 @@
 
   --ancho: 68rem;
   --medida: 38rem;
+
+  color-scheme: dark;        /* barras de desplazamiento y controles del navegador, tambien de noche */
 }
 
 *,
@@ -56,6 +58,113 @@ a:hover { color: #fff; }
   outline: 3px solid var(--turquesa-brillo);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+::selection { background: rgb(0 226 204 / 0.35); color: #fff; }
+
+/* ---- El cielo: estrellas al fondo de todas las paginas, solo con CSS y sin tocar el HTML
+   (sin JavaScript tambien se ve). Cuatro capas fijas detras de todo:
+     html::before  las lejanas, diminutas, y unas nebulosas muy suaves con los colores del rotulo
+     body::before  las brillantes, que titilan...
+     body::after   ...y otras con otro ritmo, para que no se enciendan todas a la vez.
+                   Algunas son destellos de cuatro puntas con el neon de una pieza del rotulo
+     html::after   una estrella fugaz que cruza tres veces por ciclo, cada vez por un sitio
+   Donde el navegador sabe (animation-timeline), al bajar las cercanas se mueven mas que las lejanas.
+   Con movimiento reducido no se mueve nada y en las paginas de jugar solo quedan las lejanas, quietas.
+   Las texturas (img/cielo/*.svg) son baldosas de distinto tamano para que no se note que se repiten. */
+html::before,
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 125vh;   /* mas alto que la pantalla: es lo que sube al bajar */
+  height: 125lvh;
+  pointer-events: none;
+}
+
+html::before {
+  background:
+    url("../img/cielo/lejanas-1.svg") 0 0 / 700px 700px,
+    url("../img/cielo/lejanas-2.svg") 230px 120px / 1100px 1100px,
+    radial-gradient(55rem 38rem at 88% 0%, rgb(120 128 255 / 0.13), transparent 70%),
+    radial-gradient(48rem 34rem at 0% 55%, rgb(0 226 204 / 0.06), transparent 70%),
+    radial-gradient(50rem 30rem at 75% 100vh, rgb(255 70 62 / 0.055), transparent 70%);
+}
+body::before { background: url("../img/cielo/brillantes-1.svg") 0 0 / 860px 860px; }
+body::after { background: url("../img/cielo/brillantes-2.svg") 410px 270px / 1230px 1230px; opacity: 0.85; }
+
+.sala::before,
+.sala::after { content: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  body::before { animation: titila-a 7s ease-in-out infinite; }
+  body::after { animation: titila-b 11s ease-in-out -4s infinite; }
+
+  html::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 8rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to right, transparent, rgb(140 255 238 / 0.45) 55%, #fff);
+    filter: drop-shadow(0 0 3px var(--turquesa-brillo));
+    transform-origin: 100% 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: fugaz 45s ease-out 3s infinite;
+  }
+  html:has(> .sala)::after { content: none; }
+
+  @supports (animation-timeline: scroll()) {
+    html::before {
+      animation: deriva-lejos linear both;
+      animation-timeline: scroll(root);
+    }
+    body::before {
+      animation: titila-a 7s ease-in-out infinite, deriva-cerca linear both;
+      animation-timeline: auto, scroll(root);
+    }
+    body::after {
+      animation: titila-b 11s ease-in-out -4s infinite, deriva-cerca linear both;
+      animation-timeline: auto, scroll(root);
+    }
+  }
+}
+
+@keyframes titila-a {
+  0%, 100% { opacity: 0.35; }
+  30% { opacity: 1; }
+  48% { opacity: 0.6; }
+  72% { opacity: 0.95; }
+}
+@keyframes titila-b {
+  0%, 100% { opacity: 0.95; }
+  22% { opacity: 0.4; }
+  50% { opacity: 0.85; }
+  78% { opacity: 0.25; }
+}
+@keyframes deriva-lejos { to { transform: translateY(-8vh); } }
+@keyframes deriva-cerca { to { transform: translateY(-22vh); } }
+
+/* Cada paso: aparece, cruza menos de un segundo y se apaga. Entre uno y otro salta, ya apagada,
+   al sitio del siguiente */
+@keyframes fugaz {
+  0% { opacity: 0; transform: translate(78vw, 9vh) rotate(155deg) translateX(0); }
+  0.4%, 1.3% { opacity: 1; }
+  2.2% { opacity: 0; transform: translate(78vw, 9vh) rotate(155deg) translateX(30vmax); }
+  33% { opacity: 0; transform: translate(8vw, 20vh) rotate(28deg) translateX(0); }
+  33.4%, 34.3% { opacity: 1; }
+  35.2% { opacity: 0; transform: translate(8vw, 20vh) rotate(28deg) translateX(30vmax); }
+  66% { opacity: 0; transform: translate(64vw, 48vh) rotate(150deg) translateX(0); }
+  66.4%, 67.3% { opacity: 1; }
+  68.2%, 100% { opacity: 0; transform: translate(64vw, 48vh) rotate(150deg) translateX(30vmax); }
 }
 
 .solo-lector {
