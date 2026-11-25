@@ -7,6 +7,15 @@
   // En Android, lo primero es instalarlo desde Google Play; en iPhone y en el PC, jugar en el navegador
   if (/Android/i.test(navigator.userAgent)) document.documentElement.classList.add("android");
 
+  // Menu del movil: se abre y se cierra sin JavaScript (es un popover), pero al elegir una seccion de
+  // esta misma pagina (#juegos...) se quedaria abierto encima: se cierra al pulsar cualquier enlace
+  var menu = document.getElementById("menu");
+  if (menu && menu.hidePopover) {
+    menu.addEventListener("click", function (ev) {
+      if (ev.target.closest("a") && menu.matches(":popover-open")) menu.hidePopover();
+    });
+  }
+
   // Video de la portada: no arranca si se han pedido menos animaciones o ahorro de datos
   // (se queda la imagen fija) y se para mientras no se ve
   var fondo = document.querySelector(".portada-video video");

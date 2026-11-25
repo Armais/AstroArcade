@@ -27,14 +27,15 @@
 <body>
   <nav class="barra barra-siempre" aria-label="Menú">
     <a class="barra-marca" href="../"><img src="../apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
-    <div class="barra-menu">
+    <div class="barra-menu" id="menu" popover>
       <a href="../#juegos">Juegos</a>
       <a class="opcional" href="../#nosotros">Nosotros</a>
       <a class="opcional" href="./" aria-current="page">Prensa</a>
       <a class="opcional" href="../#contacto">Contacto</a>
-      <a href="../en/press/" hreflang="en" lang="en" aria-label="English">EN</a>
-      <a class="boton" href="../orbit-rivals/jugar/">Jugar</a>
     </div>
+    <a class="barra-idioma" href="../en/press/" hreflang="en" lang="en" aria-label="English">EN</a>
+    <a class="boton" href="../orbit-rivals/jugar/">Jugar</a>
+    <button class="barra-abrir" type="button" popovertarget="menu" aria-label="Menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </nav>
 
   <main>

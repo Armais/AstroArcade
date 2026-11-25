@@ -94,8 +94,8 @@ html::before {
     radial-gradient(48rem 34rem at 0% 55%, rgb(0 226 204 / 0.06), transparent 70%),
     radial-gradient(50rem 30rem at 75% 100vh, rgb(255 70 62 / 0.055), transparent 70%);
 }
-body::before { background: url("../img/cielo/brillantes-1.svg") 0 0 / 860px 860px; }
-body::after { background: url("../img/cielo/brillantes-2.svg") 410px 270px / 1230px 1230px; opacity: 0.85; }
+body::before { background: url("../img/cielo/brillantes-1.svg") 0 0 / 1530px 1530px; }
+body::after { background: url("../img/cielo/brillantes-2.svg") 610px 370px / 1910px 1910px; opacity: 0.85; }
 
 .sala::before,
 .sala::after { content: none; }
@@ -212,19 +212,102 @@ body::after { background: url("../img/cielo/brillantes-2.svg") 410px 270px / 123
 .barra-marca img { width: 2rem; height: 2rem; border-radius: 0.45rem; }
 .barra-marca:hover { color: #fff; }
 
+/* Las secciones van en un popover (id="menu"): en pantalla ancha se ve siempre, en fila y sin lo que le
+   pone el navegador a un popover; en el movil se abre con el boton de las tres rayas, sin JavaScript.
+   El idioma y Jugar se quedan siempre en la barra. */
 .barra-menu {
+  position: static;
+  inset: auto;
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-left: auto;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background: none;
+  color: inherit;
   font-size: 0.95rem;
   font-weight: 600;
 }
-.barra-menu a { color: var(--texto-suave); text-decoration: none; white-space: nowrap; }
+.barra-menu a,
+.barra-idioma { color: var(--texto-suave); font-size: 0.95rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .barra-menu a:hover,
-.barra-menu a[aria-current="page"] { color: var(--texto); }
+.barra-menu a[aria-current="page"],
+.barra-idioma:hover { color: var(--texto); }
 .barra .boton,
 .barra .boton:hover { margin: 0; padding: 0.45rem 1.1rem; color: var(--noche); font-size: 0.95rem; }
+
+.barra-abrir {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0 -0.5rem 0 -0.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.75rem;
+  background: none;
+  color: var(--texto);
+  cursor: pointer;
+}
+.barra-abrir svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.barra-abrir path { transform-origin: 12px 12px; transition: transform 0.2s ease-out, opacity 0.2s ease-out; }
+
+@supports selector(:popover-open) {
+  /* Abierto: una tarjeta bajo la barra, a la derecha, con el halo del anillo. Se cierra tocando fuera,
+     con Esc o con el boton, que se vuelve una X */
+  .barra-menu:popover-open {
+    position: fixed;
+    inset: 3.75rem 0.75rem auto auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    min-width: 14rem;
+    margin: 0;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background: var(--noche-alta);
+    box-shadow: inset 0 0 0 1px var(--linea), 0 20px 50px -16px rgb(0 0 0 / 0.7), 0 0 30px -8px rgb(120 128 255 / 0.5);
+  }
+  .barra-menu:popover-open a {
+    display: block;
+    padding: 0.7rem 1rem;
+    border-radius: 0.65rem;
+    color: var(--texto);
+    font-size: 1.05rem;
+  }
+  .barra-menu:popover-open a:hover,
+  .barra-menu:popover-open a[aria-current="page"] { background: rgb(120 128 255 / 0.16); color: #fff; }
+
+  .barra:has(.barra-menu:popover-open) .barra-abrir { color: var(--turquesa); }
+  .barra:has(.barra-menu:popover-open) .barra-abrir path:nth-child(1) { transform: rotate(45deg) translateY(5px); }
+  .barra:has(.barra-menu:popover-open) .barra-abrir path:nth-child(2) { opacity: 0; }
+  .barra:has(.barra-menu:popover-open) .barra-abrir path:nth-child(3) { transform: rotate(-45deg) translateY(-5px); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .barra-menu:popover-open { transition: opacity 0.15s ease-out, transform 0.15s ease-out; }
+    @starting-style {
+      .barra-menu:popover-open { opacity: 0; transform: translateY(-0.4rem); }
+    }
+  }
+
+  @media (max-width: 760px) {
+    .barra-menu:not(:popover-open) { display: none; }
+    .barra-menu + * { margin-left: auto; }   /* el idioma o, si no hay, Jugar: a la derecha */
+    .barra-abrir { display: inline-flex; }
+  }
+}
 
 /* ---- Portada, como las de los motores de juegos: el rotulo encendiendose, el lema y los botones y,
    al lado (debajo en el movil), una pantalla grande con partidas de Orbit Rivals */
@@ -532,6 +615,7 @@ h3 { font-weight: 700; }
   font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.35;
+  overflow-wrap: anywhere;   /* el correo de la ficha de prensa no cabe entero en un movil de 360 px */
 }
 
 .botones {
@@ -854,6 +938,53 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 .idiomas-legal a[aria-current] { color: var(--oro); font-weight: 700; text-decoration: none; }
 .paginas-legal { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 3rem; }
 
+/* ---- Pagina 404 (404.html): el cartel de neon, a donde ir y los juegos */
+.perdido { text-align: center; }
+.perdido .titular { margin-bottom: 1.25rem; text-wrap: balance; }
+.perdido .entradilla { margin-inline: auto; }
+.perdido .botones { justify-content: center; }
+
+.cartel-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.25rem, 1.5vw, 1rem);
+  margin: 0 0 2.5rem;
+}
+.cartel-404 .neon { width: auto; height: clamp(5.5rem, 22vw, 9.5rem); stroke-width: 4.5; }
+.cartel-404 .cuatro { aspect-ratio: 60 / 80; }
+.cartel-404 .cero { display: grid; }
+.cartel-404 .cero .neon { grid-area: 1 / 1; aspect-ratio: 1; }
+.cartel-404 .planeta { fill: var(--tubo); }
+
+.perdido-subtitulo { margin: 4.5rem 0 1.5rem; font-size: 1.5rem; }
+.mini-juegos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));   /* 4 en fila; 2 en el movil */
+  gap: 1rem;
+  text-align: left;
+}
+.mini-juegos a {
+  display: block;
+  height: 100%;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: var(--noche-alta);
+  box-shadow: 0 0 0 1px var(--linea);
+  color: var(--texto);
+  text-decoration: none;
+  transition: box-shadow 0.15s ease-out;
+}
+.mini-juegos a:hover { color: var(--texto); box-shadow: 0 0 0 1.5px var(--oro-brillo), 0 0 18px rgb(255 184 0 / 0.35); }
+.mini-juegos img { width: 100%; aspect-ratio: 1024 / 500; object-fit: cover; }
+.mini-juegos strong { display: block; padding: 0.8rem 1rem 0; font-size: 1.1rem; }
+.mini-juegos span { display: block; padding: 0 1rem 0.9rem; color: var(--texto-suave); font-size: 0.92rem; }
+
+.perdido-ingles { margin: 3.5rem 0 0; color: var(--texto-suave); }
+
 /* ---- Pagina para jugar: barra arriba y el juego en todo lo demas */
 .sala {
   height: 100svh;
@@ -975,4 +1106,5 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .barra { transition: none; }
+  .barra-abrir path { transition: none; }
 }

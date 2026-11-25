@@ -17,13 +17,14 @@
 <body>
   <nav class="barra barra-siempre" aria-label="Menú" lang="es">
     <a class="barra-marca" href="../../"><img src="../../apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
-    <div class="barra-menu">
+    <div class="barra-menu" id="menu" popover>
       <a href="../../#juegos">Juegos</a>
       <a class="opcional" href="../../#nosotros">Nosotros</a>
       <a class="opcional" href="../../prensa/">Prensa</a>
       <a class="opcional" href="../../#contacto">Contacto</a>
-      <a class="boton" href="../../orbit-rivals/jugar/">Jugar</a>
     </div>
+    <a class="boton" href="../../orbit-rivals/jugar/">Jugar</a>
+    <button class="barra-abrir" type="button" popovertarget="menu" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </nav>
 
   <!-- Copia de la política de Inkline en Google Sites (la que enlaza Google Play), que sale de

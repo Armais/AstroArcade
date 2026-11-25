@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada | Astro Arcade</title>
+  <meta name="description" content="Esta página no existe. Vuelve a Astro Arcade o juega gratis a nuestros juegos en el navegador.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#121626">
+
+  <!-- La sirve el servidor en cualquier direccion que no exista (.htaccess: ErrorDocument; Cloudflare
+       Pages la usa sola): por eso todas las rutas empiezan por / -->
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/site.css?v=20261125">
+</head>
+<body>
+  <nav class="barra barra-siempre" aria-label="Menú">
+    <a class="barra-marca" href="/"><img src="/apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
+    <div class="barra-menu" id="menu" popover>
+      <a href="/#juegos">Juegos</a>
+      <a class="opcional" href="/#nosotros">Nosotros</a>
+      <a class="opcional" href="/prensa/">Prensa</a>
+      <a class="opcional" href="/#contacto">Contacto</a>
+    </div>
+    <a class="barra-idioma" href="/en/" hreflang="en" lang="en" aria-label="English">EN</a>
+    <a class="boton" href="/orbit-rivals/jugar/">Jugar</a>
+    <button class="barra-abrir" type="button" popovertarget="menu" aria-label="Menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </nav>
+
+  <main class="seccion perdido">
+    <!-- El 404 con los tubos del rotulo: los cuatros son la A coral y la turquesa y el cero es la
+         orbita con su planeta -->
+    <div class="cartel-404" aria-hidden="true">
+      <svg class="neon cuatro tono-coral" viewBox="0 0 60 80">
+        <g id="neon-cuatro"><path d="M40 8L10 52h40M40 8v64"/></g>
+        <use href="#neon-cuatro" class="nucleo"/>
+      </svg>
+      <span class="cero">
+        <svg class="neon tono-orbita" viewBox="0 0 80 80">
+          <g id="neon-orbita"><ellipse cx="40" cy="40" rx="22" ry="32" transform="rotate(14 40 40)"/></g>
+          <use href="#neon-orbita" class="nucleo"/>
+        </svg>
+        <svg class="neon planeta tono-oro" viewBox="0 0 80 80">
+          <g id="neon-planeta"><circle cx="57" cy="17" r="6"/></g>
+          <use href="#neon-planeta" class="nucleo"/>
+        </svg>
+      </span>
+      <svg class="neon cuatro tono-turquesa" viewBox="0 0 60 80">
+        <use href="#neon-cuatro"/>
+        <use href="#neon-cuatro" class="nucleo"/>
+      </svg>
+    </div>
+
+    <h1 class="titular"><span>Te has perdido en el espacio</span></h1>
+    <p class="entradilla">Esta página no existe o ha cambiado de sitio. Vuelve a la base o echa una partida mientras tanto.</p>
+    <div class="botones">
+      <a class="boton" href="/">Volver al inicio</a>
+      <a class="boton boton-secundario" href="/orbit-rivals/jugar/">Jugar a Orbit Rivals</a>
+    </div>
+
+    <h2 class="perdido-subtitulo">Nuestros juegos</h2>
+    <ul class="mini-juegos">
+      <li><a href="/orbit-rivals/"><img src="/img/juegos/orbit-rivals.webp" alt="" width="1024" height="500" loading="lazy"><strong>Orbit Rivals</strong><span>Party game de tablero en 3D</span></a></li>
+      <li><a href="/cotton-vs-ants/"><img src="/img/juegos/cotton-vs-ants.webp" alt="" width="1024" height="500" loading="lazy"><strong>Cotton vs Ants</strong><span>Plataformas en 2D</span></a></li>
+      <li><a href="/spin-brawl/"><img src="/img/juegos/spin-brawl.webp" alt="" width="1024" height="500" loading="lazy"><strong>Spin Brawl</strong><span>Combate de peonzas en 3D</span></a></li>
+      <li><a href="/pinball-master/"><img src="/img/juegos/pinball-master.webp" alt="" width="1024" height="500" loading="lazy"><strong>Pinball Master</strong><span>Pinball en 3D</span></a></li>
+    </ul>
+
+    <p class="perdido-ingles" lang="en">Lost in space? This page doesn't exist. <a href="/en/">Go to the English site</a>.</p>
+  </main>
+
+  <footer class="pie">
+    <ul class="pie-menu">
+      <li><a href="/#juegos">Juegos</a></li>
+      <li><a href="/prensa/">Prensa</a></li>
+      <li><a href="/privacidad/">Privacidad</a></li>
+      <li><a href="https://discord.gg/VyT2ESFKJc">Discord</a></li>
+      <li><a href="https://www.tiktok.com/@astro_arcade_games">TikTok</a></li>
+      <li><a href="https://www.instagram.com/orbit.rivals/">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@OrbitRivalsGame">YouTube</a></li>
+      <li><a href="https://armaisdiaz.itch.io/">itch.io</a></li>
+      <li><a href="/en/" hreflang="en" lang="en">English</a></li>
+    </ul>
+    <p>© 2026 Astro Arcade</p>
+  </footer>
+</body>
+</html>

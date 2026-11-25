@@ -3,3 +3,21 @@
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.astroarcade\.es$ [NC]
 RewriteRule ^(.*)$ https://astroarcade.es/$1 [R=301,L]
+
+# Lo que no existe: nuestra pagina, con el 404 de verdad (Cloudflare Pages usa /404.html solo)
+ErrorDocument 404 /404.html
+
+# Cache. El CDN de Hostinger ya comprime (brotli) y guarda 7 dias el CSS, el JS, las imagenes y las
+# fuentes: por eso, al cambiar site.css, sitio.js o rotulo.js hay que subir su ?v= en todas las paginas.
+# Aqui solo lo que faltaba:
+#  - El HTML no traia Cache-Control y el navegador podia seguir con una version vieja horas o dias
+#    despues de publicar. Ahora la comprueba siempre (con su ETag es un 304, sin descargarla otra vez).
+#  - El video y el zumbido de la portada no traian nada: 7 dias, como lo demas.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(mp4|mp3)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>

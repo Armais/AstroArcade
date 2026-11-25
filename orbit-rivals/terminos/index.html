@@ -17,13 +17,14 @@
 <body>
   <nav class="barra barra-siempre" aria-label="Menú">
     <a class="barra-marca" href="../../"><img src="../../apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
-    <div class="barra-menu">
+    <div class="barra-menu" id="menu" popover>
       <a href="../../#juegos">Juegos</a>
       <a class="opcional" href="../../#nosotros">Nosotros</a>
       <a class="opcional" href="../../prensa/">Prensa</a>
       <a class="opcional" href="../../#contacto">Contacto</a>
-      <a class="boton" href="../jugar/">Jugar</a>
     </div>
+    <a class="boton" href="../jugar/">Jugar</a>
+    <button class="barra-abrir" type="button" popovertarget="menu" aria-label="Menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
   </nav>
 
   <!-- Copia de https://alfonso652.github.io/orbitrivals-legal/terminos.html (la que enlaza Google Play),
