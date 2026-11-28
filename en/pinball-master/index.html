@@ -67,8 +67,8 @@
   </script>
 
   <link rel="preload" href="../../fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../css/site.css?v=20261128">
-  <script src="../../js/sitio.js?v=20261125" defer></script>
+  <link rel="stylesheet" href="../../css/site.css?v=20261128b">
+  <script src="../../js/sitio.js?v=20261128" defer></script>
 </head>
 <body>
   <nav class="barra barra-siempre" aria-label="Menu">
@@ -170,6 +170,45 @@
       <div class="botones">
         <a class="boton" href="play/">Play free in your browser</a>
       </div>
+    </section>
+
+    <!-- Mas juegos: los otros tres, para que quien llega a un juego descubra los demas, y Discord -->
+    <section class="seccion" aria-labelledby="title-more-games">
+      <h2 id="title-more-games" class="titular"><span>More games</span></h2>
+      <ul class="mas-juegos">
+        <li class="mas-juego">
+          <a href="../orbit-rivals/">
+            <img src="../../img/juegos/orbit-rivals.webp" alt="" width="1024" height="500" loading="lazy">
+            <div><strong>Orbit Rivals</strong><span>3D party board game</span></div>
+          </a>
+        </li>
+        <li class="mas-juego">
+          <a href="../cotton-vs-ants/">
+            <img src="../../img/juegos/cotton-vs-ants.webp" alt="" width="1024" height="500" loading="lazy">
+            <div><strong>Cotton vs Ants</strong><span>2D platformer</span></div>
+          </a>
+        </li>
+        <li class="mas-juego">
+          <a href="../spin-brawl/">
+            <img src="../../img/juegos/spin-brawl.webp" alt="" width="1024" height="500" loading="lazy">
+            <div><strong>Spin Brawl</strong><span>3D spinning-top brawler</span></div>
+          </a>
+        </li>
+      </ul>
+      <ul class="redes redes-una">
+        <li class="red tono-orbita">
+          <a href="https://discord.gg/VyT2ESFKJc">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <g id="neon-chat">
+                <path d="M12 12h40a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6H30L18 56V46h-6a6 6 0 0 1-6-6V18a6 6 0 0 1 6-6z"/>
+                <path d="M20 29h.01M32 29h.01M44 29h.01"/>
+              </g>
+              <use href="#neon-chat" class="nucleo"/>
+            </svg>
+            <div><strong>Discord</strong><span>Our community: news, matches and suggestions</span></div>
+          </a>
+        </li>
+      </ul>
     </section>
   </main>
 

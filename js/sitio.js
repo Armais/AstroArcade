@@ -51,8 +51,10 @@
     });
   });
 
-  // Visor de capturas: la grande encima de la pagina; se cierra con Esc, con la X o tocando fuera
-  var capturas = document.querySelectorAll(".galeria a");
+  // Visor de capturas: la grande encima de la pagina; se cierra con Esc, con la X o tocando fuera.
+  // Se pasa a la anterior o a la siguiente con sus botones, con las flechas del teclado o deslizando
+  // el dedo; al llegar a la ultima vuelve a la primera.
+  var capturas = Array.prototype.slice.call(document.querySelectorAll(".galeria a"));
   if (capturas.length && window.HTMLDialogElement) {
     var visor = document.createElement("dialog");
     visor.className = "visor";
@@ -62,16 +64,67 @@
     cerrar.className = "visor-cerrar";
     cerrar.textContent = "×";
     cerrar.setAttribute("aria-label", ingles ? "Close" : "Cerrar");
+    var actual = 0;
+
+    var mostrar = function (i) {
+      actual = (i + capturas.length) % capturas.length;
+      grande.src = capturas[actual].href;
+      grande.alt = capturas[actual].querySelector("img").alt;
+    };
+
+    var paso = function (clase, texto, trazo, salto) {
+      var boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "visor-paso " + clase;
+      boton.setAttribute("aria-label", texto);
+      boton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + trazo + '"/></svg>';
+      boton.addEventListener("click", function (ev) {
+        ev.stopPropagation(); // que no cierre el visor
+        mostrar(actual + salto);
+      });
+      return boton;
+    };
+
     visor.append(grande, cerrar);
+    if (capturas.length > 1) {
+      visor.append(
+        paso("visor-anterior", ingles ? "Previous screenshot" : "Captura anterior", "M15 5l-7 7 7 7", -1),
+        paso("visor-siguiente", ingles ? "Next screenshot" : "Captura siguiente", "M9 5l7 7-7 7", 1)
+      );
+    }
     document.body.appendChild(visor);
-    visor.addEventListener("click", function () { visor.close(); });
+
+    // Deslizar: si el dedo se mueve mas en horizontal que en vertical y al menos 40 px, cambia de
+    // captura y el toque no cuenta como "tocar para cerrar"
+    var x0 = 0, y0 = 0, deslizado = false;
+    visor.addEventListener("touchstart", function (ev) {
+      x0 = ev.touches[0].clientX;
+      y0 = ev.touches[0].clientY;
+      deslizado = false;
+    }, { passive: true });
+    visor.addEventListener("touchend", function (ev) {
+      var dx = ev.changedTouches[0].clientX - x0;
+      var dy = ev.changedTouches[0].clientY - y0;
+      if (capturas.length > 1 && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        deslizado = true;
+        mostrar(actual + (dx < 0 ? 1 : -1));
+      }
+    });
+
+    visor.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowLeft") { ev.preventDefault(); mostrar(actual - 1); }
+      if (ev.key === "ArrowRight") { ev.preventDefault(); mostrar(actual + 1); }
+    });
+    visor.addEventListener("click", function () {
+      if (deslizado) { deslizado = false; return; }
+      visor.close();
+    });
     visor.addEventListener("close", function () { grande.removeAttribute("src"); });
 
-    capturas.forEach(function (enlace) {
+    capturas.forEach(function (enlace, i) {
       enlace.addEventListener("click", function (ev) {
         ev.preventDefault();
-        grande.src = enlace.href;
-        grande.alt = enlace.querySelector("img").alt;
+        mostrar(i);
         visor.showModal();
       });
     });
