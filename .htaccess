@@ -7,6 +7,10 @@ RewriteRule ^(.*)$ https://astroarcade.es/$1 [R=301,L]
 # Lo que no existe: nuestra pagina, con el 404 de verdad (Cloudflare Pages usa /404.html solo)
 ErrorDocument 404 /404.html
 
+# Lo que es del repositorio y no de la web (las instrucciones para agentes y el generador de las
+# novedades, tools/novedades/): 404 si alguien lo pide
+RedirectMatch 404 ^/(AGENTS\.md|CLAUDE\.md|tools/)
+
 # Cache. El CDN de Hostinger ya comprime (brotli) y guarda 7 dias el CSS, el JS, las imagenes y las
 # fuentes: por eso, al cambiar site.css, sitio.js o rotulo.js hay que subir su ?v= en todas las paginas.
 # Aqui solo lo que faltaba:

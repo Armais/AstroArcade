@@ -859,6 +859,69 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 .redes-una { grid-template-columns: 1fr; }
 .redes-una .red a { flex-direction: row; align-items: center; gap: 1.25rem; }
 
+/* ---- Novedades (las paginas las hace tools/novedades/generar.py): una tarjeta por version, como las de
+   Mas juegos, en la portada (las tres ultimas) y en la lista; y la pagina de cada una */
+.novedades {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.novedad a {
+  display: block;
+  height: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--noche-alta);
+  color: var(--texto);
+  text-decoration: none;
+  box-shadow: 0 0 0 1px var(--linea);
+  transition: box-shadow 0.15s ease-out;
+}
+.novedad a:hover {
+  color: var(--texto);
+  box-shadow: 0 0 0 1.5px var(--orbita-brillo), 0 0 22px rgb(120 128 255 / 0.45);
+}
+.novedad img { width: 100%; aspect-ratio: 1024 / 500; object-fit: cover; }
+.novedad div { padding: 1rem 1.25rem 1.25rem; }
+.novedad-meta { margin: 0; color: var(--texto-suave); font-size: 0.9rem; }
+.novedad-meta strong { color: var(--turquesa); font-weight: 700; }
+.novedad-titulo { margin: 0.35rem 0 0; font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
+
+.novedad-volver { margin: 0 0 1.5rem; }
+.novedad-volver a { color: var(--texto-suave); font-weight: 600; text-decoration: none; }
+.novedad-volver a:hover { color: var(--texto); }
+.novedad-cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+.novedad-cabecera img { width: 100%; border-radius: 1rem; box-shadow: 0 0 0 1px var(--linea); }
+.novedad-cabecera .juego-genero a { color: inherit; }
+.novedad-pagina .titular { margin: 0; font-size: clamp(1.9rem, 4.6vw, 2.9rem); text-wrap: balance; }
+.novedad-cambios { max-width: var(--medida); margin: 0 0 2rem; padding-left: 1.25rem; }
+.novedad-cambios li { margin-bottom: 0.75rem; }
+.novedad-cambios li::marker { color: var(--oro-brillo); }
+.novedad-cambios strong { color: #fff; }
+/* La invitacion a la prueba cerrada de Google Play, como los avisos pero en turquesa */
+.novedad-prueba {
+  max-width: var(--medida);
+  margin: 0 0 2rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.9rem;
+  background: var(--noche-alta);
+  box-shadow: inset 3px 0 0 var(--turquesa-brillo);
+}
+.novedad-prueba h2 { margin: 0 0 0.5rem; color: var(--turquesa); font-size: 1.25rem; line-height: 1.3; }
+.novedad-prueba p { margin: 0.5rem 0; }
+.novedad-prueba ol { margin: 0.5rem 0; padding-left: 1.25rem; }
+.novedad-prueba li { margin-bottom: 0.35rem; }
+.novedad-prueba p:last-child { margin-bottom: 0; color: var(--texto-suave); }
+
 /* ---- Contacto y pie */
 .correo { font-weight: 700; }
 
@@ -1173,6 +1236,12 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 }
 
 @media (max-width: 760px) {
+  .novedades { grid-template-columns: 1fr; gap: 0.9rem; }
+  .novedad a { display: grid; grid-template-columns: 42% 1fr; align-items: center; }
+  .novedad img { height: 100%; }
+  .novedad div { padding: 0.75rem 1rem; }
+  .novedad-titulo { font-size: 1.05rem; }
+  .novedad-cabecera { grid-template-columns: 1fr; gap: 1.25rem; }
   .mas-juegos { grid-template-columns: 1fr; gap: 0.9rem; }
   .mas-juego a { display: grid; grid-template-columns: 42% 1fr; align-items: center; }
   .mas-juego img { height: 100%; }

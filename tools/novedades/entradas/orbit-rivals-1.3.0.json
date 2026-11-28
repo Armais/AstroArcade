@@ -1,0 +1,41 @@
+{
+  "juego": "orbit-rivals",
+  "version": "1.3.0",
+  "fecha": "2026-11-23",
+  "es": {
+    "titulo": "Llega Tusko y la invitación con enlace",
+    "cambios": [
+      "**Tusko, el Mamut Mortal**, el cadete número 12. Su Embestida suma 2 a la tirada, y quien esté en las casillas por las que pasa retrocede 2. Trae 40 emotes propios, con su voz: ya hay 540.",
+      "**«Invitar» con enlace:** tu amigo entra directamente en tu sala. En Android funciona aunque tenga que instalar el juego primero. También puedes compartir la imagen del podio.",
+      "**ANILLOS DE SATURNO, rehecho:** tramos diseñados a mano, un respiro tras cada peligro y más calma. Ya no hay carreras imposibles.",
+      "**BÉISBOL, más fácil:** el brillo de la bola indica a qué altura llega (rojo, alta; verde, media; azul, baja).",
+      "**RITMO** tiene música propia y algo más de margen. **ANCLAJE** da más margen al saltar.",
+      "**DEVORADOR:** si se acaban las vidas, ganan las babosas, y las vidas se ven junto al marcador.",
+      "**SENDERO:** la cámara sigue siempre a quien juega en tu pantalla.",
+      "**Más calma en línea:** 30 segundos para tirar (antes eran 15). Si alguien se ausenta, un bot ocupa su sitio a los 30 segundos.",
+      "**Ratón en los minijuegos de joystick:** se arrastra con el botón izquierdo y el derecho es la acción.",
+      "**La primera partida guiada** explica los Poderes y tu habilidad.",
+      "**Canjear código:** una tarjeta nueva en la pestaña Materia oscura, también en el navegador y en el ordenador.",
+      "**Jugar en local sin dar tu fecha de nacimiento:** solo se pide para jugar en línea, y se explica por qué.",
+      "Los dados de Aurora ya no quedan tapados por la barandilla. Nos lo avisó un jugador en itch.io."
+    ]
+  },
+  "en": {
+    "titulo": "Tusko arrives, plus invite links",
+    "cambios": [
+      "**Tusko, the Mighty Mammoth**, cadet number 12. His Charge adds 2 to the roll, and anyone on the spaces he passes moves back 2. He brings 40 emotes of his own, with his voice: there are now 540.",
+      "**Invite with a link:** your friend goes straight into your room. On Android it works even if they have to install the game first. You can also share the podium image.",
+      "**RINGS OF SATURN, rebuilt:** hand-designed sections, a breather after every hazard and a calmer pace. No more impossible races.",
+      "**BASEBALL, easier:** the ball’s glow tells you how high it comes (red, high; green, middle; blue, low).",
+      "**RHYTHM** has its own music and a bit more leeway. **ANCHOR LINES** gives you more margin when jumping.",
+      "**DEVOURER:** if the lives run out, the slugs win, and the lives now show next to the scoreboard.",
+      "**PATH:** the camera always follows whoever is playing on your screen.",
+      "**Calmer online play:** 30 seconds to roll (it used to be 15). If someone goes idle, a bot takes their seat after 30 seconds.",
+      "**Mouse in joystick minigames:** drag with the left button; the right one is the action.",
+      "**The first guided game** explains Powers and your ability.",
+      "**Redeem code:** a new card in the Dark matter tab, also in the browser and on desktop.",
+      "**Play locally without giving your date of birth:** it’s only asked for online play, and we explain why.",
+      "Aurora’s dice are no longer hidden behind the railing. A player on itch.io told us."
+    ]
+  }
+}

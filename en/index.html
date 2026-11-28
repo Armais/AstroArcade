@@ -39,7 +39,7 @@
 
   <link rel="preload" href="../fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../img/rotulo.webp" as="image">
-  <link rel="stylesheet" href="../css/site.css?v=20261128b">
+  <link rel="stylesheet" href="../css/site.css?v=20261128c">
   <script>document.documentElement.classList.add("rotulo-js");</script>
   <script src="../js/rotulo.js?v=20261125" defer></script>
   <script src="../js/sitio.js?v=20261128" defer></script>
@@ -49,6 +49,7 @@
     <a class="barra-marca" href="#"><img src="../apple-touch-icon.png" alt="" width="180" height="180"><span>Astro Arcade</span></a>
     <div class="barra-menu" id="menu" popover>
       <a href="#games">Games</a>
+      <a class="opcional" href="news/">News</a>
       <a class="opcional" href="#about">About</a>
       <a class="opcional" href="press/">Press</a>
       <a class="opcional" href="#contact">Contact</a>
@@ -191,6 +192,46 @@
         </div>
       </article>
     </section>
+
+    <!-- novedades:inicio -->
+    <!-- Las tres ultimas novedades: las pone tools/novedades/generar.py, no se editan a mano -->
+    <section id="news" class="seccion" aria-labelledby="titulo-news">
+      <h2 id="titulo-news" class="titular"><span>News</span></h2>
+      <p class="entradilla">What’s new in every version of our games.</p>
+      <ul class="novedades">
+        <li class="novedad">
+          <a href="news/pinball-master-0-46/">
+            <img src="../img/juegos/pinball-master.webp" alt="" width="1024" height="500" loading="lazy">
+            <div>
+              <p class="novedad-meta"><strong>Pinball Master 0.46</strong> · <time datetime="2026-11-26">November 26, 2026</time></p>
+              <h3 class="novedad-titulo">Now in English</h3>
+            </div>
+          </a>
+        </li>
+        <li class="novedad">
+          <a href="news/orbit-rivals-1-3-0/">
+            <img src="../img/juegos/orbit-rivals.webp" alt="" width="1024" height="500" loading="lazy">
+            <div>
+              <p class="novedad-meta"><strong>Orbit Rivals 1.3.0</strong> · <time datetime="2026-11-23">November 23, 2026</time></p>
+              <h3 class="novedad-titulo">Tusko arrives, plus invite links</h3>
+            </div>
+          </a>
+        </li>
+        <li class="novedad">
+          <a href="news/cotton-vs-ants-4-0-4/">
+            <img src="../img/juegos/cotton-vs-ants.webp" alt="" width="1024" height="500" loading="lazy">
+            <div>
+              <p class="novedad-meta"><strong>Cotton vs Ants 4.0.4</strong> · <time datetime="2026-11-14">November 14, 2026</time></p>
+              <h3 class="novedad-titulo">A Ferris wheel in level 6</h3>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="botones">
+        <a class="boton boton-secundario" href="news/">See all news</a>
+      </div>
+    </section>
+    <!-- novedades:fin -->
 
     <section id="about" class="seccion" aria-labelledby="title-about">
       <h2 id="title-about" class="titular"><span>Who we are</span></h2>
@@ -366,6 +407,7 @@
   <footer class="pie">
     <ul class="pie-menu">
       <li><a href="#games">Games</a></li>
+      <li><a href="news/">News</a></li>
       <li><a href="press/">Press</a></li>
       <li><a href="privacy/">Privacy</a></li>
       <li><a href="https://discord.gg/VyT2ESFKJc">Discord</a></li>

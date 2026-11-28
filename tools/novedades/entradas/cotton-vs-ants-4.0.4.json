@@ -1,0 +1,22 @@
+{
+  "juego": "cotton-vs-ants",
+  "version": "4.0.4",
+  "fecha": "2026-11-14",
+  "prueba_cerrada": true,
+  "es": {
+    "titulo": "Una noria en el nivel 6",
+    "cambios": [
+      "**Nivel 6:** el tramo de plataformas y cajas es ahora una noria de cuatro tablas.",
+      "**Ves dónde caes:** al caer deprisa, Polusan ya no baja tanto en la pantalla, y en el aire una sombra marca dónde vas a aterrizar.",
+      "**En pantallas táctiles** la cámara enseña algo más del nivel."
+    ]
+  },
+  "en": {
+    "titulo": "A Ferris wheel in level 6",
+    "cambios": [
+      "**Level 6:** the stretch of platforms and crates is now a Ferris wheel with four boards.",
+      "**See where you land:** when you fall fast, Polusan no longer drops so low on the screen, and in the air a shadow shows where you’ll land.",
+      "**On touch screens** the camera shows a bit more of the level."
+    ]
+  }
+}

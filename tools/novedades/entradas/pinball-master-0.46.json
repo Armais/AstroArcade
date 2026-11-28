@@ -1,0 +1,30 @@
+{
+  "juego": "pinball-master",
+  "version": "0.46",
+  "fecha": "2026-11-26",
+  "prueba_cerrada": true,
+  "es": {
+    "titulo": "Ya en inglés",
+    "cambios": [
+      "**El juego entero en inglés**, y el idioma se cambia en Opciones.",
+      "**Cámara fija:** la mesa llena la pantalla también en los móviles alargados.",
+      "**Pausa automática** al cambiar de ventana. Desde ella puedes reintentar la mesa y ajustar la música y los efectos.",
+      "**Al perder** ves cuánto te faltó para el objetivo y un consejo de la mesa.",
+      "**Mesas por mundos**, con un acceso directo a cada uno y el filtro «Sin 3 estrellas».",
+      "**Más controles:** los flippers también con el ratón y con los gatillos del mando (A para lanzar), y una pista de cómo usarlos tras el primer lanzamiento.",
+      "**La app de Android**, en prueba cerrada en Google Play, con récords en línea, vibración y Compartir."
+    ]
+  },
+  "en": {
+    "titulo": "Now in English",
+    "cambios": [
+      "**The whole game in English**, and you can change the language in Options.",
+      "**Fixed camera:** the table fills the screen on tall phones too.",
+      "**Automatic pause** when you switch windows. From there you can retry the table and adjust the music and effects.",
+      "**When you lose** you see how close you were to the goal and a tip for the table.",
+      "**Tables by world**, with a shortcut to each one and the “Missing stars” filter.",
+      "**More controls:** the flippers also work with the mouse and the controller triggers (A to launch), plus a hint on how to use them after your first launch.",
+      "**The Android app**, in closed testing on Google Play, with online leaderboards, vibration and Share."
+    ]
+  }
+}
