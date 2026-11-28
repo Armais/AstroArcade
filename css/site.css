@@ -666,7 +666,50 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
 .tono-orbita { --tubo: var(--orbita); --brillo: var(--orbita-brillo); --halo: rgb(120 128 255 / 0.6); --tinte: rgb(120 128 255 / 0.16); }
 .tono-oro { --tubo: var(--oro); --brillo: var(--oro-brillo); --halo: rgb(255 184 0 / 0.55); --tinte: rgb(255 184 0 / 0.12); }
 
-/* ---- Lo que nos mueve: la mision en una frase y los cuatro valores en fila */
+/* ---- Lo que nos mueve: la mision en una frase, la promesa y los cuatro valores en fila */
+
+/* La promesa: un cartel con el tubo del anillo alrededor, la frase en su neon (como la divisa de la
+   portada) y la firma de los dos, cada nombre en el color de su A */
+.promesa {
+  margin: 0 0 2.5rem;
+  padding: 2rem 2.25rem 1.75rem;
+  border-radius: 1.25rem;
+  background: radial-gradient(90% 140% at 0% 0%, rgb(120 128 255 / 0.18), transparent 70%), var(--noche-alta);
+  box-shadow: inset 0 0 0 1.5px var(--orbita-brillo), 0 0 22px rgb(120 128 255 / 0.35);
+}
+.promesa-etiqueta {
+  margin: 0 0 0.75rem;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.promesa blockquote { margin: 0; }
+.promesa blockquote p {
+  margin: 0;
+  color: var(--orbita);
+  font-size: clamp(1.6rem, 3.8vw, 2.5rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 6px var(--orbita-brillo), 0 0 24px rgb(120 128 255 / 0.6);
+  text-wrap: balance;
+}
+.promesa figcaption {
+  margin-top: 1.25rem;
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: italic;
+}
+.promesa figcaption span {
+  color: var(--tubo);
+  font-weight: 700;
+  text-shadow: 0 0 6px var(--brillo), 0 0 16px var(--halo);
+}
+
 .valores {
   list-style: none;
   margin: 0;
@@ -1082,6 +1125,7 @@ html[lang="en"] .insignia-play img { height: 4.2rem; margin: -0.65rem -0.7rem; }
   .juego { gap: 1.25rem; }
   .cabecera-juego { gap: 1.5rem; padding-top: 1.75rem; }
   .fundador { padding: 1.5rem 1.5rem 1.75rem; }
+  .promesa { padding: 1.5rem 1.5rem 1.5rem; }
   .juego:nth-of-type(even) .video { order: 0; }
   .seccion { padding: 3.5rem 1.25rem; }
   .seccion-pegada { padding-top: 2rem; }

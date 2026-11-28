@@ -39,7 +39,7 @@
 
   <link rel="preload" href="fonts/exo2.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/rotulo.webp" as="image">
-  <link rel="stylesheet" href="css/site.css?v=20261125">
+  <link rel="stylesheet" href="css/site.css?v=20261128">
   <script>document.documentElement.classList.add("rotulo-js");</script>
   <script src="js/rotulo.js?v=20261125" defer></script>
   <script src="js/sitio.js?v=20261125" defer></script>
@@ -194,9 +194,52 @@
       </article>
     </section>
 
+    <section id="nosotros" class="seccion" aria-labelledby="titulo-nosotros">
+      <h2 id="titulo-nosotros" class="titular"><span>Quiénes somos</span></h2>
+      <p class="entradilla">Astro Arcade somos dos jugadores que desde pequeños soñábamos con crear nuestros propios juegos. Ese sueño es hoy este estudio: hacemos los juegos que nos gustaría encontrarnos y los compartimos con jugadores de todo el mundo.</p>
+
+      <!-- Cada fundador es una de las A del logo: Alfonso la coral, Armais la turquesa -->
+      <div class="fundadores">
+        <article class="fundador tono-coral">
+          <div class="fundador-cabecera">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <g id="neon-a"><path d="M14 56L32 8l18 48M20.5 39h23"/></g>
+              <use href="#neon-a" class="nucleo"/>
+            </svg>
+            <div>
+              <h3>Alfonso</h3>
+              <p class="fundador-papel">Cofundador</p>
+            </div>
+          </div>
+          <p>Soy desarrollador de software y, sobre todo, una persona curiosa, siempre buscando algo nuevo que aprender. Los videojuegos me apasionan desde pequeño y ahora me hace ilusión estar al otro lado, convirtiendo ideas en mundos que otros disfruten. Crear juegos es mi forma de seguir explorando.</p>
+        </article>
+        <article class="fundador tono-turquesa">
+          <div class="fundador-cabecera">
+            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
+              <use href="#neon-a"/>
+              <use href="#neon-a" class="nucleo"/>
+            </svg>
+            <div>
+              <h3>Armais</h3>
+              <p class="fundador-papel">Cofundador</p>
+            </div>
+          </div>
+          <p>Soy ingeniero aeroespacial de formación, llevo ocho años programando y, antes que nada, soy jugador. De pequeño soñaba con hacer mis propios juegos; hoy hago los que a mí me gustaría encontrarme: de esos que te hacen desconectar del mundo y siempre te piden una partida más.</p>
+        </article>
+      </div>
+    </section>
+
     <section id="valores" class="seccion" aria-labelledby="titulo-valores">
       <h2 id="titulo-valores" class="titular"><span>Lo que nos mueve</span></h2>
-      <p class="entradilla">Queremos hacer juegos que enganchen por lo divertidos que son y que, de paso, entrenen cosas que sirven fuera de la pantalla: la memoria, los reflejos o pensar una estrategia.</p>
+      <p class="entradilla">No hacemos juegos para vender, sino para divertir: queremos que cada partida sea una experiencia única que divierta y entretenga.</p>
+
+      <!-- La promesa del estudio, en el neon del anillo (la orbita que comparten las dos A) y firmada
+           por los dos con el color de su A: Alfonso la coral, Armais la turquesa -->
+      <figure class="promesa">
+        <p class="promesa-etiqueta">Nuestra promesa</p>
+        <blockquote><p>Nunca publicaremos un juego que no nos encante a nosotros primero.</p></blockquote>
+        <figcaption><span class="tono-coral">Alfonso</span> y <span class="tono-turquesa">Armais</span></figcaption>
+      </figure>
 
       <!-- Cada icono es un tubo de neón como los del logo: el trazo de color y, encima, su núcleo
            casi blanco (el <use>). Cada valor lleva el color de una pieza del rótulo. -->
@@ -249,41 +292,6 @@
           <p>Cada idea se prueba jugando antes de darla por buena. Si no divierte, no entra.</p>
         </li>
       </ul>
-    </section>
-
-    <section id="nosotros" class="seccion" aria-labelledby="titulo-nosotros">
-      <h2 id="titulo-nosotros" class="titular"><span>Quiénes somos</span></h2>
-      <p class="entradilla">Astro Arcade somos dos entusiastas de los videojuegos. Hacemos los juegos que nos gustaría encontrarnos como jugadores, para compartir esa pasión con la comunidad y con jugadores de todo el mundo.</p>
-
-      <!-- Cada fundador es una de las A del logo: Alfonso la coral, Armais la turquesa -->
-      <div class="fundadores">
-        <article class="fundador tono-coral">
-          <div class="fundador-cabecera">
-            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
-              <g id="neon-a"><path d="M14 56L32 8l18 48M20.5 39h23"/></g>
-              <use href="#neon-a" class="nucleo"/>
-            </svg>
-            <div>
-              <h3>Alfonso</h3>
-              <p class="fundador-papel">Cofundador</p>
-            </div>
-          </div>
-          <p>Soy desarrollador de software y, sobre todo, una persona curiosa, siempre buscando algo nuevo que aprender. Los videojuegos me apasionan desde pequeño y ahora me hace ilusión estar al otro lado, convirtiendo ideas en mundos que otros disfruten. Crear juegos es mi forma de seguir explorando.</p>
-        </article>
-        <article class="fundador tono-turquesa">
-          <div class="fundador-cabecera">
-            <svg class="neon" viewBox="0 0 64 64" aria-hidden="true">
-              <use href="#neon-a"/>
-              <use href="#neon-a" class="nucleo"/>
-            </svg>
-            <div>
-              <h3>Armais</h3>
-              <p class="fundador-papel">Cofundador</p>
-            </div>
-          </div>
-          <p>Soy ingeniero aeroespacial de formación, llevo ocho años programando y, antes que nada, soy jugador. Me gusta crear los juegos que a mí me gustaría encontrarme: de esos que te hacen desconectar del mundo y siempre te piden una partida más.</p>
-        </article>
-      </div>
     </section>
 
     <section id="comunidad" class="seccion" aria-labelledby="titulo-comunidad">
